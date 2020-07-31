@@ -1,29 +1,42 @@
 <template>
-    <div class="mymessage" :class="[state?'show':'hide']" v-if="show">
-        <i :class="[type]"></i><span>{{text}}</span>
+    <div class="mymessage" :class="[state?'show':'hide',type+'border']">
+        <i :class="['base',type]"></i><span>{{text}}</span>
     </div>
 </template>
 <script>
     export default {
-        // type有三种形式，success，error，none
+        props: {
+            type: {
+                type: String,
+                default: 'success',
+                validator(value) {
+                    return ['success', 'error', 'warn','default'].indexOf(value) !== -1
+                }
+            },
+            text: {
+                type: String,
+                default: 'ok'
+            },
+            time: {
+                type: Number,
+                default: 1600
+            }
+        },
         data(){
             return{
-                type:'success',
-                text:'ok',
-                time:1600,  //消息提示显示的持续时间
                 state:true,
-                show:true,
             }
         },
         mounted(){
             setTimeout(() => {
                 this.state = false
-            }, this.time);
+            }, this.time+500);
         }
     }
 </script>
 <style lang="less" scoped>
 .mymessage{
+    box-sizing: border-box;
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -32,13 +45,25 @@
     min-width: 150px;
     border-radius: 5px;
     text-align: center;
-    border: 1px solid #d3d3d3;
 }
+.successborder{
+    border: 1px solid #52c41a;
+}
+.errorborder{
+    border: 1px solid #f5222d;
+}
+.warnborder{
+    border: 1px solid #de912f;
+}
+.defaultborder{
+    border: 1px solid #7e8087;
+}
+
 .show{
-    animation: showMessage .6s ease-out forwards;
+    animation: showMessage .5s ease-out forwards;
 }
 .hide{
-    animation: hideMessage .6s ease-out forwards;
+    animation: hideMessage .5s ease-out forwards;
 }
 @keyframes showMessage{
     from {
@@ -61,25 +86,26 @@ span{
     line-height: 40px;
     margin-right: 10px;
 }
-.success{
+.base{
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url(./messageIcon.png) no-repeat;
+    background: url(./message-icon.webp) no-repeat;
     background-size: cover;
     vertical-align: middle;
     transform: translateY(-2px);
     margin: 0 10px;
 }
+.success{
+    background-position: 0 0;
+}
 .error{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: url(./messageIcon.png) no-repeat;
-    background-size: cover;
+    background-position: -60px 0;
+}
+.warn{
+    background-position: -40px 0;
+}
+.default{
     background-position: -20px 0;
-    vertical-align: middle;
-    transform: translateY(-2px);
-    margin: 0 10px;
 }
 </style>

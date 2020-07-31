@@ -3,11 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import Message from './components/message/message.js'
+import niUI from './components/index'
 
 Vue.config.productionTip = false
 
-Vue.prototype.$message = Message
+Vue.use(niUI)
 
 new Vue({
   router,

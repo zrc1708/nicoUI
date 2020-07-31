@@ -7,15 +7,11 @@ const MessageConstructor = Vue.extend(MessageTemplate);
 // 使用这个方法调用hello组件
 function Message(options) {
   options = options || {};
-
-//   if (typeof options === 'string') {
-//     options = {
-//       text: options
-//     }
-//   }
   
   // 实例化子组件，然后获取到DOM结构并挂载到body上
-  const messageInstence = new MessageConstructor({data: options});
+  // let messageInstence = new MessageConstructor({data: options});
+  let messageInstence = new MessageConstructor();
+  Object.assign(messageInstence, options);
   messageInstence.vm = messageInstence.$mount();
   document.body.appendChild(messageInstence.vm.$el);
 
