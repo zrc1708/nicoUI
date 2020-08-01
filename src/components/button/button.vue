@@ -156,7 +156,6 @@ export default {
         }
     }
     .is-disabled{
-        // pointer-events: none;
         cursor: not-allowed;
         background-image: none;
     }

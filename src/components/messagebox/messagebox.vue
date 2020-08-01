@@ -11,7 +11,7 @@
             <!-- 消息盒子主体 -->
             <div class="message-box-content">
                 <div class="content">{{ content }}</div>
-                <!-- <input type="text" v-model="inputValue" v-if="isShowInput" ref="input"> -->
+                <ni-input type="text" v-model="inputValue" v-if="isShowInput" ref="input"></ni-input>
             </div>
             <!-- 消息盒子按钮 -->
             <div class="message-box-btns">

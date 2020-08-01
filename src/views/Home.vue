@@ -3,6 +3,7 @@
     home <br>
     <button @click="button1">点击触发message</button>
     <button @click="button2">点击触发messagebox</button> <br>
+
     <ni-button type='default'>主要按钮</ni-button>
     <ni-button type='primary' @click="button3">主要按钮</ni-button>
     <ni-button type='success'>主要按钮</ni-button>
@@ -16,7 +17,9 @@
     <ni-button type='info' disabled>主要按钮</ni-button>
     <ni-button type='warn' disabled>主要按钮</ni-button>
     <ni-button type='error' disabled>主要按钮</ni-button>
-    <ni-input></ni-input>
+
+    <ni-input placeholder="快输入" @input="input" @change="change" clearable v-model="user"></ni-input>
+
   </div>
 </template>
 
@@ -25,7 +28,8 @@ export default {
     name: 'Home',
     data(){
         return{
-            flag:true
+            test:1234,
+            user:'',
         }
     },
     mounted(){
@@ -51,8 +55,14 @@ export default {
           });    
         },
         button3(){
-          console.log(123)
-        }
+          console.log(this.user)
+        },
+        input(value){
+            console.log(value)
+        },
+        change(value){
+            console.log(value)
+        },
     }
 }
 </script>
