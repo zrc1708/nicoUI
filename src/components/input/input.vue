@@ -1,10 +1,12 @@
 <template>
     <div class="ni-input-box">
         <input
+            v-bind="$attrs"
             ref='niinput'
             type="text" 
             :placeholder="placeholder" 
             class="ni-input" 
+            :class="{'inputerror':error}"
             @input="input($event)"
             @change="$emit('change',$event.target.value)"
         >
@@ -20,6 +22,10 @@ export default {
             default: '请输入内容',
         },
         clearable: {
+            type: Boolean,
+            default: false,
+        },
+        error: {
             type: Boolean,
             default: false,
         },
@@ -83,6 +89,15 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
     }
     &:hover{
         border-color: #c0c4cc;
+    }
+}
+.inputerror{
+    border-color: #f56c6c;
+    &:focus{
+        border-color: #f56c6c;
+    }
+    &:hover{
+        border-color: #f56c6c;
     }
 }
 .clear{

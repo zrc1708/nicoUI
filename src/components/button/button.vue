@@ -1,5 +1,5 @@
 <template>
-    <div class="button" :class="[type,{'is-disabled':disabled},disabledClass]" @click="handleClick">
+    <div class="button" :class="[type,{'is-disabled':disabled},disabledClass,size]" @click="handleClick">
         <slot></slot>
     </div>
 </template>
@@ -18,7 +18,12 @@ export default {
             type: Boolean,
             default: false
         },
-        
+        size: {
+            type: String,
+            validator(value) {
+                return ['medium','small','mini'].indexOf(value) !== -1
+            }
+        },
     },
     data(){
         return{
@@ -67,7 +72,21 @@ export default {
         -khtml-user-select:none; /*早期浏览器*/
         user-select:none;
     }
-
+    .medium{
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+    .small{
+        padding: 9px 15px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+    .mini{
+        padding: 7px 15px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
     .default{
         &:hover,&:focus {
             color: #409eff;

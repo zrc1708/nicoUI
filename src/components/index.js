@@ -3,9 +3,10 @@ import Vue from 'vue'
 // 导入单个组件
 import button from './button/button.vue'
 import input from './input/input.vue'
+import swiper from './swiper/swiper.vue'
+import swiperitem from './swiper/swiper-item.vue'
 
 import Message from './message/message.js'
-
 import MessageBox from './messagebox/messagebox.js'
 
 
@@ -17,7 +18,9 @@ Vue.use(MessageBox)
 // 以数组的结构保存组件，便于遍历
 const components = [
     button,
-    input
+    input,
+    swiper,
+    swiperitem
 ]
 
 // 定义 install 方法
