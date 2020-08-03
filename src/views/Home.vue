@@ -27,15 +27,24 @@
     <ni-input placeholder="快输入" @input="input" @change="change" clearable v-model="user"></ni-input>
 
     <div class="swiper-box">
-        <ni-swiper>
+        <ni-swiper @change="swiperChange" 
+          autoplay
+          :autoplayTime= 2000
+          :alwaysShowButton= false>
             <ni-swiper-item>
-              <div class="img">第一</div>
+              <div class="img img1">第一</div>
             </ni-swiper-item>
             <ni-swiper-item>
-              <div class="img">第二</div>
+              <div class="img img2">第二</div>
             </ni-swiper-item>
             <ni-swiper-item>
-              <div class="img">第三</div>
+              <div class="img img3">第三</div>
+            </ni-swiper-item>
+            <ni-swiper-item>
+              <div class="img img1">第四</div>
+            </ni-swiper-item>
+            <ni-swiper-item>
+              <div class="img img2">第五</div>
             </ni-swiper-item>
         </ni-swiper>
     </div>
@@ -94,18 +103,32 @@ export default {
         change(value){
             console.log(value)
         },
+        swiperChange(val){
+            // console.log(`目前在第 ${val} 张`)
+        }
     }
 }
 </script>
 <style lang="less" scoped>
 .swiper-box{
-  width: 500px;
+  width: 400px;
   height: 300px;
 }
 .img{
   box-sizing: border-box;
-  width: 500px;
+  width: 100%;
   height: 100%;
-  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img1{
+  background-color: #99a9bf;
+}
+.img2{
+  background-color: #d3dce6;
+}
+.img3{
+  background-color: #d3e6de;
 }
 </style>
