@@ -5,6 +5,7 @@ import button from './button/button.vue'
 import input from './input/input.vue'
 import swiper from './swiper/swiper.vue'
 import swiperitem from './swiper/swiper-item.vue'
+import niswitch from './switch/switch.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -20,7 +21,8 @@ const components = [
     button,
     input,
     swiper,
-    swiperitem
+    swiperitem,
+    niswitch
 ]
 
 // 定义 install 方法

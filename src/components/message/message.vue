@@ -1,7 +1,9 @@
 <template>
-    <div class="mymessage" :class="[state?'show':'hide',type+'border']">
+<transition name="message">
+     <div class="mymessage" :class="[type+'border']" v-show="state">
         <i :class="['base',type]"></i><span>{{text}}</span>
     </div>
+</transition>
 </template>
 <script>
     export default {
@@ -24,13 +26,14 @@
         },
         data(){
             return{
-                state:true,
+                state:false,
             }
         },
         mounted(){
+            this.state = true
             setTimeout(() => {
                 this.state = false
-            }, this.time+500);
+            }, this.time+300);
         }
     }
 </script>
@@ -45,6 +48,7 @@
     min-width: 150px;
     border-radius: 5px;
     text-align: center;
+    top: 15px;
 }
 .successborder{
     border: 1px solid #52c41a;
@@ -58,30 +62,6 @@
 .defaultborder{
     border: 1px solid #7e8087;
 }
-
-.show{
-    animation: showMessage .5s ease-out forwards;
-}
-.hide{
-    animation: hideMessage .5s ease-out forwards;
-}
-@keyframes showMessage{
-    from {
-        top:-40px
-    }
-    to {
-        top:15px;
-    }
-}
-@keyframes hideMessage{
-    from {
-        top:15px
-    }
-    to {
-        top:-40px;
-    }
-}
-
 span{
     line-height: 40px;
     margin-right: 10px;
@@ -107,5 +87,13 @@ span{
 }
 .default{
     background-position: -20px 0;
+}
+
+.message-enter-active, .message-leave-active {
+  transition: all .3s;
+}
+.message-enter, .message-leave-to {
+  opacity: 0;
+  top: -40px!important;
 }
 </style>

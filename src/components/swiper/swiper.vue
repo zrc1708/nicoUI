@@ -1,24 +1,25 @@
 <template>
     <div class="ni-swiper" ref="ni-swiper" v-resize="itChange" @mouseenter="enter" @mouseleave="leave">
         <!-- 轮播主体 --> 
-        <div class="ni-swiper-content">
+        <div class="ni-swiper-content" @click="swiperClick">
             <div class="ni-swiper-movebox" 
                 ref="movebox"
                 :data-length="sliderLength"
                 :style="{'width': `${this.wrapperWidth}%`,
                 'margin-left': translateValue,
-                'transition-duration':haveTransition?'.2s':'0s'}">
+                'transition-duration':haveTransition?(playTime+'ms'):'0s'}">
                 <slot></slot>
             </div>
         </div>
         <!-- 下方标识 -->
-        <div class="ni-swiper-markbox">
+        <div class="ni-swiper-markbox" :class="['markbox-'+marktype]">
             <div v-for="item in sliderLength" :key="item" 
             class="ni-swiper-mark"
             ref="ni-swiper-mark"
             :data-index="item"
             @click="moveTo($event)">
-                <div class="ni-swiper-mark-colorbox" :data-index="item"></div>
+                <div class="ni-swiper-mark-colorbox" :data-index="item" 
+                :style="{'background-color': (item==1)?markColor:'#cbd3de'}"></div>
             </div>
         </div>
         <!-- 左右按钮 -->
@@ -50,12 +51,29 @@
                 type: Number,
                 default: 3000
             },
+            // 轮播过渡效果的时间
+            playTime:{
+                type: Number,
+                default: 200
+            },
             // 是否一直显示按钮
             alwaysShowButton:{
                 type: Boolean,
                 default: false
             },
-            
+            // 标识的位置
+            marktype: {
+                type: String,
+                default: 'center',
+                validator(value) {
+                    return ['center','left', 'right'].indexOf(value) !== -1
+                }
+            },
+            // 标识的颜色
+            markColor: {
+                type: String,
+                default: 'white'
+            },
         },
         data () {
             return {
@@ -76,6 +94,7 @@
             let dom = this.$refs['movebox'];
             dom.insertBefore(this.$children[this.sliderLength - 1].$el.cloneNode(true),dom.children[0])
             dom.insertBefore(this.$children[0].$el.cloneNode(true), dom.children[dom.children.length]);
+
             // 无过渡下调整位置到第一张元素
             this.translateX -= 100
             setTimeout(() => {
@@ -153,7 +172,7 @@
                 let marks = this.$refs['ni-swiper-mark']
                 marks.forEach((item,i)=>{
                     if(item.dataset.index==this.trueIndex){
-                        item.firstChild.style.backgroundColor = '#ffffff'
+                        item.firstChild.style.backgroundColor = this.markColor
                     }else{
                         item.firstChild.style.backgroundColor = '#cbd3de'
                     }
@@ -191,6 +210,9 @@
                         this.btnright()
                     },this.autoplayTime)
                 }
+            },
+            swiperClick(){
+                this.$emit('swiperClick', this.trueIndex-1)
             }
         },
         // 局部注册自定义指令
@@ -309,8 +331,6 @@
     height: 50px;
     bottom: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
 
     .ni-swiper-mark{
         cursor: pointer;
@@ -326,13 +346,20 @@
             background-color: #cbd3de;
         }
     }
-    .ni-swiper-mark:nth-child(1){
-        .ni-swiper-mark-colorbox{
-            width: 100%;
-            height: 100%;
-            background-color: white;
-        }
-    }
+}
+.markbox-center{
+    align-items: center;
+    justify-content: center;
+}
+.markbox-left{
+    margin-left: 20px;
+    align-items: center;
+    justify-content: flex-start;
+}
+.markbox-right{
+    transform: translateX(-20px);
+    align-items: center;
+    justify-content: flex-end;
 }
 // 按钮过渡
 .btnl-enter-active, .btnl-leave-active {

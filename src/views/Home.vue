@@ -28,9 +28,13 @@
 
     <div class="swiper-box">
         <ni-swiper @change="swiperChange" 
+          @swiperClick="swiperClick"
           autoplay
+          marktype="center"
+          markColor="white"
           :autoplayTime= 2000
-          :alwaysShowButton= false>
+          :alwaysShowButton= false
+          :playTime= 300>
             <ni-swiper-item>
               <div class="img img1">第一</div>
             </ni-swiper-item>
@@ -48,6 +52,13 @@
             </ni-swiper-item>
         </ni-swiper>
     </div>
+
+    <ni-switch v-model="switchval" 
+        @click="switchClick"
+        activeColor='rgb(19, 206, 102)'
+        inactiveText='关闭自动续费'
+        activeText='开启自动续费'></ni-switch>
+    {{switchval}}
   </div>
 </template>
 
@@ -58,6 +69,7 @@ export default {
         return{
             test:1234,
             user:'',
+            switchval:false
         }
     },
     mounted(){
@@ -105,13 +117,19 @@ export default {
         },
         swiperChange(val){
             // console.log(`目前在第 ${val} 张`)
+        },
+        swiperClick(index){
+          console.log(index)
+        },
+        switchClick(){
+          this.$message({text:'switch改变了',type:'success',time:1200})
         }
     }
 }
 </script>
 <style lang="less" scoped>
 .swiper-box{
-  width: 400px;
+  width: 600px;
   height: 300px;
 }
 .img{
