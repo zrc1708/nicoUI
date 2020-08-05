@@ -49,6 +49,7 @@
     border-radius: 5px;
     text-align: center;
     top: 15px;
+    z-index: 99;
 }
 .successborder{
     border: 1px solid #52c41a;

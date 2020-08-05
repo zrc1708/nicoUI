@@ -6,6 +6,11 @@ import input from './input/input.vue'
 import swiper from './swiper/swiper.vue'
 import swiperitem from './swiper/swiper-item.vue'
 import niswitch from './switch/switch.vue'
+import badage from './badage/badage.vue'
+import dialog from './dialog/dialog.vue'
+import prompt from './prompt/prompt.vue'
+import link from './link/link.vue'
+import upload from './upload/upload.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -22,7 +27,12 @@ const components = [
     input,
     swiper,
     swiperitem,
-    niswitch
+    niswitch,
+    badage,
+    dialog,
+    prompt,
+    link,
+    upload
 ]
 
 // 定义 install 方法

@@ -9,7 +9,7 @@ export default {
     props:{
         type: {
             type: String,
-            default: 'primary',
+            default: 'default',
             validator(value) {
                 return ['default','primary', 'success', 'info','warn','error'].indexOf(value) !== -1
             }
