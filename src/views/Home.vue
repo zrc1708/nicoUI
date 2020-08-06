@@ -139,7 +139,15 @@
     <ni-link type='warn' underline @click="test1" disabled>警告链接</ni-link>
     <ni-link type='danger' underline @click="test1" disabled>危险链接</ni-link>
     <hr>
-    <ni-upload></ni-upload>
+
+    <ni-upload :chooseSuccess="chooseSuccess" 
+               :chooseFail="chooseFail"
+               :handupload="handupload"
+               buttontext='选择你的文件'
+               :sizelimit= 1024*1024
+               :numlimit= 6>
+      <span slot='tip'>只能上传图片文件,最多10张，不超过1mb</span>
+    </ni-upload>
   </div>
 </template>
 
@@ -214,11 +222,25 @@ export default {
         },
         closedialog(){
           this.visible = false
+        },
+        chooseSuccess(filesarr){
+          console.log('选择文件成功')
+          console.log(filesarr)
+        },
+        chooseFail(obj){
+          console.log(obj)
+        },
+        handupload(arr){
+          console.log('手动上传功能')
+          console.log(arr)
         }
     }
 }
 </script>
 <style lang="less" scoped>
+.home{
+  height: 2000px;
+}
 .swiper-box{
   width: 600px;
   height: 300px;

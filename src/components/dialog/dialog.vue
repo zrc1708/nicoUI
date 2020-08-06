@@ -45,7 +45,6 @@ export default {
     },
     methods:{
         cancel(){
-	        // this.$emit('update:visible',!this.visible);
 	        this.$emit('close');
         }
     }
