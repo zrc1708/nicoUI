@@ -2,13 +2,13 @@
     <div class="upload-box">
         <input type="file" ref="file" @change="checkField($event)" :accept="kindlimit" multiple="multiple" v-show="false"/> 
         <ni-button @click="upload">{{buttontext}}</ni-button>
-        <ni-button v-if="handupload" type="primary" @click="handupload(filesArr)" class="handbutton">手动上传</ni-button>
+        <ni-button v-if="handupload" type="primary" @click="handupload(filesArr)" class="handbutton">{{handbuttontext}}</ni-button>
         <div class="tip">
             <slot name="tip"></slot>
         </div>
-        <ul class="upload-ul" ref="filesUl">
+        <ul class="upload-ul">
             <transition-group name="list">
-                <li v-for="(item,index) in filesArr" :key="item+index">
+                <li v-for="(item,index) in filesArr" :key="item.size">
                     <span>{{item.name}}</span>
                     <i class="icon" @click="deleteFile(index)"></i>
                 </li>
@@ -61,6 +61,11 @@ export default {
             type:Function,
             required:true
         },
+        // 手动上传按钮的文字
+        handbuttontext:{
+            type:[Number,String],
+            default:'上传'
+        },
         // 手动上传方法
         handupload:{
             type:Function,
@@ -101,6 +106,10 @@ export default {
         deleteFile(index){
             this.filesArr.splice(index,1)
         },
+        // 清空文件
+        clear(){
+            this.filesArr = []
+        },
         // 选择错误回调
         Fail(obj){
             this.chooseFail(obj)
@@ -114,6 +123,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .upload-box{
+    position: relative;
     width: 360px;
 }
 .tip{
@@ -228,6 +238,9 @@ export default {
 .list-leave-active {
   transition: all .4s;
   position: absolute;
+  i{
+      opacity: 0;
+  }
 }
 .list-enter, .list-leave-to {
   opacity: 0;

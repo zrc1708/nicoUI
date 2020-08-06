@@ -143,9 +143,11 @@
     <ni-upload :chooseSuccess="chooseSuccess" 
                :chooseFail="chooseFail"
                :handupload="handupload"
+               handbuttontext="手动上传"
                buttontext='选择你的文件'
-               :sizelimit= 1024*1024
-               :numlimit= 6>
+               ref="uploadbox"
+               :sizelimit= 1024*1024*20
+               :numlimit= 16>
       <span slot='tip'>只能上传图片文件,最多10张，不超过1mb</span>
     </ni-upload>
   </div>
@@ -233,6 +235,7 @@ export default {
         handupload(arr){
           console.log('手动上传功能')
           console.log(arr)
+          this.$refs.uploadbox.clear()
         }
     }
 }
