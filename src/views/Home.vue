@@ -143,9 +143,12 @@
     <ni-upload :chooseSuccess="chooseSuccess" 
                :chooseFail="chooseFail"
                :handupload="handupload"
+               type="image"
+               drag
                handbuttontext="手动上传"
                buttontext='选择你的文件'
                ref="uploadbox"
+               kindlimit='image/*'
                :sizelimit= 1024*1024*20
                :numlimit= 16>
       <span slot='tip'>只能上传图片文件,最多10张，不超过1mb</span>
