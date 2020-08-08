@@ -20,7 +20,6 @@
     export default {
         name:'ni-switch',
         props: {
-            // 标题
             value: {
                 type: Boolean
             },

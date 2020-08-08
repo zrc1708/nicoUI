@@ -352,7 +352,6 @@ export default {
     margin: 0;
     padding: 0;
     width: 100%;
-    padding-bottom: 5px;
 
     .imgbox{
         transition: all .4s;

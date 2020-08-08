@@ -11,6 +11,8 @@ import dialog from './dialog/dialog.vue'
 import prompt from './prompt/prompt.vue'
 import link from './link/link.vue'
 import upload from './upload/upload.vue'
+import select from './select/select.vue'
+import option from './select/option.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -32,7 +34,9 @@ const components = [
     dialog,
     prompt,
     link,
-    upload
+    upload,
+    select,
+    option
 ]
 
 // 定义 install 方法
