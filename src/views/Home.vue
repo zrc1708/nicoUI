@@ -155,6 +155,22 @@
     </ni-upload>
     <hr>
 
+    <ni-tag @click="clicktag">标签一</ni-tag>
+    <ni-tag type="primary">标签二</ni-tag>
+    <ni-tag type="success">标签三</ni-tag>
+    <ni-tag type="info">标签四</ni-tag>
+    <ni-tag type="warn">标签五</ni-tag>
+    <ni-tag type="danger">标签六</ni-tag>
+    <br>
+    <ni-tag closeable type="primary">标签二</ni-tag>
+    <ni-tag closeable type="primary" size="medium">标签二</ni-tag>
+    <ni-tag closeable type="primary" size="small">标签二</ni-tag>
+    <ni-tag closeable type="primary" size="mini">标签二</ni-tag>
+    <ni-tag type="primary" size="mini">标签二</ni-tag>
+    <br>
+    <ni-tag closeable :key="tag" v-for="tag in dynamicTags" @close="closetag" type="primary">{{tag}}</ni-tag>
+    <hr>
+
     <span style="display:block">选择的是：{{selectvalue}}</span>
     <ni-select v-model="selectvalue">
         <ni-option v-for="item in selectoptions" :key="item.value" :label="item.label" :value="item.value"></ni-option>
@@ -188,6 +204,7 @@ export default {
                 value: '选项5',
                 label: '北京烤鸭'
               }],
+            dynamicTags: ['标签一', '标签二', '标签三', '标签四'],
         }
     },
     mounted(){
@@ -262,6 +279,12 @@ export default {
           console.log('手动上传功能')
           console.log(arr)
           this.$refs.uploadbox.clear()
+        },
+        closetag(tag){
+          this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+        },
+        clicktag(tag){
+          console.log(tag)
         }
     }
 }

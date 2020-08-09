@@ -13,6 +13,7 @@ import link from './link/link.vue'
 import upload from './upload/upload.vue'
 import select from './select/select.vue'
 import option from './select/option.vue'
+import tag from './tag/tag.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -36,6 +37,7 @@ const components = [
     link,
     upload,
     select,
+    tag,
     option
 ]
 
