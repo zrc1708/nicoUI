@@ -175,6 +175,10 @@
     <ni-select v-model="selectvalue">
         <ni-option v-for="item in selectoptions" :key="item.value" :label="item.label" :value="item.value"></ni-option>
     </ni-select>
+    <br>
+    <ni-select v-model="selectvalue2" clearable>
+        <ni-option v-for="item in selectoptions" :key="item.value" :label="item.label" :value="item.value"></ni-option>
+    </ni-select>
   </div>
 </template>
 
@@ -187,7 +191,8 @@ export default {
             user:'',
             switchval:false,
             visible:false,
-            selectvalue:'',
+            selectvalue:'选项2',
+            selectvalue2:'',
             selectoptions:[{
                 value: '选项1',
                 label: '黄金糕'
@@ -202,7 +207,7 @@ export default {
                 label: '龙须面'
               }, {
                 value: '选项5',
-                label: '北京烤鸭'
+                label: '北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭'
               }],
             dynamicTags: ['标签一', '标签二', '标签三', '标签四'],
         }

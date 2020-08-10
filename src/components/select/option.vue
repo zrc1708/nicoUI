@@ -1,7 +1,7 @@
 <template>
-    <div class="option-box" @click="handleOptionSelect">
+    <li class="option-box" @click="handleOptionSelect" :class="[{'choosed':select.value==value}]">
         <span >{{label}}</span>
-    </div>
+    </li>
 </template>
 <script>
 export default {
@@ -19,24 +19,39 @@ export default {
     created(){
         //将 ni-option实例push进父组件select的options
         this.select.options.push(this);
-        // this.select.cachedOptions.push(this);
-        this.select.optionsCount++;
-        // this.select.filteredOptionsCount++;
-        // 监听自定义的事件
-        // this.$on('queryChange', this.queryChange);
-        // this.$on('handleGroupDisabled', this.handleGroupDisabled);
     },
     mounted(){
-        
+
     },
     methods:{
         handleOptionSelect(){
+            this.select.choosedlabel = this.label
             this.select.$emit('input', this.value)
-            // this.select.onOptionDestroy(this.select.options.indexOf(this));
+            this.select.showul = false
         }
     }
 }
 </script>
 <style lang="less" scoped>
+.option-box{
+    font-size: 14px;
+    padding: 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #606266;
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
 
+    &:hover{
+        background-color: #f5f7fa;
+    }
+}
+.choosed{
+    background-color: #f5f7fa;
+    color: #409eff;
+}
 </style>
