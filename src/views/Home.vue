@@ -23,8 +23,17 @@
     <ni-button type='default' size='medium'>中等尺寸</ni-button>
     <ni-button type='default' size='small'>小型尺寸</ni-button>
     <ni-button type='default' size='mini'>超小尺寸</ni-button>
+    <hr>
 
-    <ni-input placeholder="快输入" @input="input" @change="change" clearable v-model="user"></ni-input>
+    <ni-input style="width:300px" placeholder="快输入" @input="input" @change="change" clearable v-model="user"></ni-input>
+    <ni-input style="width:600px" placeholder="快输入" @input="input" @change="change" clearable v-model="user">
+      <span slot="before">用户名：</span>
+    </ni-input>
+    <ni-input style="width:600px" placeholder="快输入" @input="input" @change="change" clearable v-model="user">
+      <span slot="before">www.</span>
+      <span slot="after">.com</span>
+    </ni-input>
+    <hr>
 
     <div class="swiper-box">
         <ni-swiper @change="swiperChange" 
@@ -179,6 +188,16 @@
     <ni-select v-model="selectvalue2" clearable>
         <ni-option v-for="item in selectoptions" :key="item.value" :label="item.label" :value="item.value"></ni-option>
     </ni-select>
+    <hr>
+
+    <ni-breadcrumb delimiter=">">
+        <ni-breadcrumb-item :to="{path:'/test1'}">路由1</ni-breadcrumb-item>
+        <ni-breadcrumb-item :to="{path:'/test2'}">路由2</ni-breadcrumb-item>
+        <ni-breadcrumb-item @click="test1">测试</ni-breadcrumb-item>
+    </ni-breadcrumb>
+    <div class="routertest">
+        <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -322,5 +341,10 @@ export default {
 .dialoginput{
   width: 100%!important;
   margin-bottom: 10px;
+}
+.routertest{
+  width: 600px;
+  height: 200px;
+  border: 1px solid black;
 }
 </style>

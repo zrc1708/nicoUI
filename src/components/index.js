@@ -12,8 +12,10 @@ import prompt from './prompt/prompt.vue'
 import link from './link/link.vue'
 import upload from './upload/upload.vue'
 import select from './select/select.vue'
-import option from './select/option.vue'
+import selectoption from './select/selectoption.vue'
 import tag from './tag/tag.vue'
+import breadcrumb from './breadcrumbs/breadcrumb.vue'
+import breadcrumbitem from './breadcrumbs/breadcrumbitem.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -38,7 +40,9 @@ const components = [
     upload,
     select,
     tag,
-    option
+    selectoption,
+    breadcrumb,
+    breadcrumbitem
 ]
 
 // 定义 install 方法

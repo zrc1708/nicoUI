@@ -1,16 +1,24 @@
 <template>
     <div class="ni-input-box">
-        <input
-            v-bind="$attrs"
-            ref='niinput'
-            type="text" 
-            :placeholder="placeholder" 
-            class="ni-input" 
-            :class="{'inputerror':error}"
-            @input="input($event)"
-            @change="$emit('change',$event.target.value)"
-        >
-        <i class="clear" @click="clear" v-if="clearShow&&clearable" ></i>
+        <div class="before" v-if="$slots.before">
+            <slot name="before"></slot>
+        </div>
+        <span class="content">
+            <input
+                v-bind="$attrs"
+                ref='niinput'
+                type="text" 
+                :placeholder="placeholder" 
+                class="ni-input" 
+                :class="{'inputerror':error}"
+                @input="input($event)"
+                @change="$emit('change',$event.target.value)"
+            >
+            <i class="clear" @click="clear" v-if="clearShow&&clearable" ></i>
+        </span>
+        <div class="after" v-if="$slots.after">
+            <slot name="after"></slot>
+        </div>
     </div>
 </template>
 <script>
@@ -44,7 +52,7 @@ export default {
             this.$emit('input',event.target.value)
         },
         clear(){
-            this.$refs.niinput.value = ''
+            this.$emit('input','')
             this.clearShow = false
         },
     }
@@ -65,22 +73,50 @@ input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
 }
 .ni-input-box{
     position: relative;
-    width: 180px;
     font-size: 15px;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    display: flex;
+}
+.before{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    background-color: #f5f7fa;
+    color: #909399;
+    border-radius: 4px 0 0 4px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #dcdfe6;
+}
+.after{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    background-color: #f5f7fa;
+    color: #909399;
+    border-radius: 0 4px 4px 0;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-left: 1px solid #dcdfe6;
+}
+.content{
+    flex: 1;
+    position: relative;
 }
 .ni-input{
     background-color: #fff;
     background-image: none;
+    border: none;
     border-radius: 4px;
-    border: 1px solid #dcdfe6;
     box-sizing: border-box;
     color: #606266;
     display: inline-block;
     font-size: inherit;
     height: 40px;
-    line-height: 40px;
     outline: none;
-    padding: 0 15px;
+    padding: 3px 35px 0 15px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
     width: 100%;
     &:focus{
