@@ -198,6 +198,56 @@
     <div class="routertest">
         <router-view></router-view>
     </div>
+    <hr>
+
+    <div class="nav" style="width:200px">
+        <ni-sidenav router>
+
+            <ni-sidenav-drop>
+                <span slot="droptitle">
+                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>个人中心
+                </span>
+                <ni-sidenav-item index="test5">
+                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航五
+                </ni-sidenav-item>
+                <ni-sidenav-item index="test6">
+                    <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航六
+                </ni-sidenav-item>
+                <ni-sidenav-item index="test7">
+                    <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航七
+                </ni-sidenav-item>
+
+                <ni-sidenav-drop>
+                    <span slot="droptitle">
+                        <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>个人中心2
+                    </span>
+                    <ni-sidenav-item index="test8">
+                        <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航八
+                    </ni-sidenav-item>
+                    <ni-sidenav-item index="test9">
+                        <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航九
+                    </ni-sidenav-item>
+                    <ni-sidenav-item index="test10">
+                        <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十
+                    </ni-sidenav-item>
+                </ni-sidenav-drop>
+
+            </ni-sidenav-drop>
+
+            <ni-sidenav-item index="test1">
+              <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航一
+            </ni-sidenav-item>
+            <ni-sidenav-item index="test2">
+              <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航二
+            </ni-sidenav-item>
+            <ni-sidenav-item index="test3">
+              <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航三
+            </ni-sidenav-item>
+            <ni-sidenav-item index="test4">
+              <i class="fa fa-calendar nav-icon" aria-hidden="true" style="font-size:18px"></i>导航四
+            </ni-sidenav-item>
+        </ni-sidenav>
+    </div>
   </div>
 </template>
 

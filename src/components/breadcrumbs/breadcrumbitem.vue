@@ -27,7 +27,10 @@ export default {
         click(){
             if(!this.to){
                 this.$emit('click')
-            }else{
+            }else if(this.$router){
+                if(this.$router.history.current.path===this.to.path){
+                    return 0
+                }
                 this.$router.push(this.to)
             }
         }
@@ -37,6 +40,7 @@ export default {
 <style lang="less" scoped>
 .breaditem-box{
     color: #606266;
+    cursor: pointer;
 }
 .delimiter{
     color: #c0c4cc;

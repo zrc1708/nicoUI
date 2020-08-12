@@ -16,6 +16,9 @@ import selectoption from './select/selectoption.vue'
 import tag from './tag/tag.vue'
 import breadcrumb from './breadcrumbs/breadcrumb.vue'
 import breadcrumbitem from './breadcrumbs/breadcrumbitem.vue'
+import sidenav from './sidenav/sidenav.vue'
+import sidenavitem from './sidenav/sidenav-item.vue'
+import sidenavdrop from './sidenav/dropnav.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -42,7 +45,10 @@ const components = [
     tag,
     selectoption,
     breadcrumb,
-    breadcrumbitem
+    breadcrumbitem,
+    sidenav,
+    sidenavitem,
+    sidenavdrop,
 ]
 
 // 定义 install 方法

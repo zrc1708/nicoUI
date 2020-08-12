@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 
 import test1 from '../examples/test1.vue'
 import test2 from '../examples/test2.vue'
+import test3 from '../examples/test3.vue'
 
 Vue.use(VueRouter)
 
@@ -16,7 +17,11 @@ Vue.use(VueRouter)
           component: test1
       },{
           path: '/test2',
-          component: test2
+          component: test2,
+          children:[{
+            path:'/test3',
+            component:test3
+          }]
       }]
     }
 ]

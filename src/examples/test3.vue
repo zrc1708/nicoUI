@@ -1,7 +1,6 @@
 <template>
     <div>
-        test2组件
-        <router-view></router-view>
+        test3组件
     </div>
 </template>
 <script>
