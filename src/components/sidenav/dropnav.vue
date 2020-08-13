@@ -5,18 +5,13 @@
              @click="showul"
              @mouseenter='enter' @mouseleave="leave" >
             <slot name="droptitle"></slot>
+            <i class="dropnav-icon" :class="[{'iconrotate':showulicon}]"></i>
         </div>
-        <!-- <transition name="fade"> -->
-            <!-- <div class="dropul"  
-                :class="[{'hide':ishide}]"
-                ref="dropnavBoxUl"
-                :style="sty">
-                <slot></slot>
-            </div> -->
-            <div class="dropul" ref="dropnavBoxUl">
-                <slot></slot>
-            </div>
-        <!-- </transition> -->
+        <div class="dropul" ref="dropnavBoxUl"
+                :class="[{'hei':test}]"
+                :style="{'height':sty}">
+            <slot></slot>
+        </div>
     </ul>
 </template>
 <script>
@@ -24,66 +19,67 @@ export default {
     name:'ni-sidenav-drop',
     inject: ['sidenav'],
     props:{
-        
+        // 是否默认展开
+        showchildren:{
+            type:Boolean,
+            default:false
+        }
     },
     data(){
         return{
             paddingleft:(this.$parent.paddingleft||0)+20,
+            height:0,
+            // 首次点击效果为收起（配合showchildren）
+            firstClose:true,
+            isauto:false,
             sty:'',
-            ishide:false
+            showulicon:false,
         }
     },
     watch:{
         
     },
     mounted(){
-        // this.height= this.$refs.dropnavBoxUl.offsetHeight;
-        // this.height = 'background-color:black'
+        this.height= this.$refs.dropnavBoxUl.offsetHeight
+        // console.log(this.$children)
+        if(!this.showchildren){
+            this.sty = '0px'
+            this.firstClose = false
+            this.showulicon = true
+        }
     },
     methods:{
         showul(){
-            // let height= this.$refs.dropnavBoxUl.offsetHeight;
-            // this.sty = `height:${height}px`
-            // this.ishide = !this.ishide
             let element = this.$refs.dropnavBoxUl
-
+            if(this.firstClose){
+                // 关闭并保存高度，开启时使用
+                this.height= element.offsetHeight
+                this.showulicon = true
+                this.animate(element,0)
+                
+            }else{
+                // 开启
+                this.showulicon = false
+                this.animate(element,this.height,()=>{
+                    element.style.height = 'auto'
+                })
+            }
+            this.firstClose = !this.firstClose
         },
-        changeheight1(element, time){
-            if (typeof window.getComputedStyle == "undefined") return;
-    
-            var height = window.getComputedStyle(element).height;
-
-            element.style.transition = "none";    // 本行2015-05-20新增，mac Safari下，貌似auto也会触发transition, 故要none下~
-            element.style.height = "auto";
-
-            var targetHeight = window.getComputedStyle(element).height;
-            element.style.height = height;
-            element.offsetWidth = element.offsetWidth;
-            if (time) element.style.transition = "height "+ time +"ms";
-            element.style.height = targetHeight;
-        },
-        animate(){
-            // 先清除以前的定时器，只保留当前的一个定时器执行
+        animate(obj, target, callback){
             clearInterval(obj.timer);
-            obj.timer = setInterval(function () {
-                var step = (target - obj.offsetLeft) / 10
+            obj.timer = setInterval(()=> {
+                let step = (target - obj.offsetHeight) / 10
                 step = step > 0 ? Math.ceil(step) : Math.floor(step)
-                if (obj.offsetLeft == target) {
-                    // 停止动画 本质是停止定时器
+                if (obj.offsetHeight == target) {
                     clearInterval(obj.timer);
-                    // if (callback) {
-                    //     // 调用回调函数
-                    //     callback()
-                    // }
                     callback && callback()
                 }
-                // 慢慢变小实现缓动效果 步长公式：（目标值-现在位置）/10
-                obj.style.left = obj.offsetLeft + step + 'px';
-            }, 15);
+                this.sty = obj.offsetHeight + step + 'px'
+            }, 13);
         },
         enter(){
-            // let height= this.$refs.dropnavBoxUl.offsetHeight;
-            // console.log(height)
+
         },
         leave(){
 
@@ -104,6 +100,7 @@ export default {
     padding-bottom: 1px;
 }
 .title{
+    position: relative;
     height: 56px;
     line-height: 56px;
     font-size: 14px;
@@ -116,17 +113,43 @@ export default {
     }
 }
 .dropul{
-    // transition: height .4s;
     overflow: hidden;
 }
-.hide{
-    height: 10px;
+.dropnav-icon{
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    transform: translateY(-50%);
+    transition:  transform .5s cubic-bezier(.23,1,.32,1);
+    display: block;
+    width: 14px;
+    height: 14px;
+    &::before{
+        content:"";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 1px;
+        width: 8px;
+        margin-left: .5px;
+        background-color: #c0c4cc;
+        transform: rotate(45deg);
+    }
+    &::after{
+        content:"";
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: 1px;
+        width: 8px;
+        margin-right: .5px;
+        background-color: #c0c4cc;
+        transform: rotate(-45deg);
+    }
 }
-.fade-enter-active, .fade-leave-active {
-  transition: all .5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-//   opacity: 0;
-  max-height: 10%;
+.iconrotate{
+    transform: translateY(-50%) rotate(180deg);
 }
 </style>

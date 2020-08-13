@@ -200,16 +200,33 @@
     </div>
     <hr>
 
-    <div class="nav" style="width:200px">
+    <div class="nav" style="width:200px;border:1px solid black">
         <ni-sidenav router>
 
-            <ni-sidenav-drop>
+            <ni-sidenav-drop showchildren>
                 <span slot="droptitle">
                     <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>个人中心
                 </span>
                 <ni-sidenav-item index="test5">
                     <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航五
                 </ni-sidenav-item>
+
+                    <!-- <ni-sidenav-drop>
+                        <span slot="droptitle">
+                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>无限套娃
+                        </span>
+                        <ni-sidenav-item index="test14">
+                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十四
+                        </ni-sidenav-item>
+                        <ni-sidenav-item index="test15">
+                            <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十五
+                        </ni-sidenav-item>
+                        <ni-sidenav-item index="test16">
+                            <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十六
+                        </ni-sidenav-item>
+                    </ni-sidenav-drop> -->
+
+
                 <ni-sidenav-item index="test6">
                     <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航六
                 </ni-sidenav-item>
@@ -230,6 +247,21 @@
                     <ni-sidenav-item index="test10">
                         <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十
                     </ni-sidenav-item>
+
+                    <ni-sidenav-drop>
+                        <span slot="droptitle">
+                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>个人中心3
+                        </span>
+                        <ni-sidenav-item index="test11">
+                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十一
+                        </ni-sidenav-item>
+                        <ni-sidenav-item index="test12">
+                            <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十二
+                        </ni-sidenav-item>
+                        <ni-sidenav-item index="test13">
+                            <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十三
+                        </ni-sidenav-item>
+                    </ni-sidenav-drop>
                 </ni-sidenav-drop>
 
             </ni-sidenav-drop>
@@ -365,7 +397,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .home{
-  height: 2000px;
+  height: 3000px;
 }
 .swiper-box{
   width: 600px;
