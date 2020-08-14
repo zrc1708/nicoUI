@@ -7,15 +7,33 @@
 export default {
     name:'ni-sidenav',
     props:{
+        // 是否开启路由
         router:{
             type:Boolean,
             default:false
+        },
+        // 当前激活的菜单的index
+        activeItemIndex:{},
+        // 菜单鼠标悬浮的背景颜色
+        backgroundHoverColor:{
+            type:String,
+            default:'#ecf5ff'
+        },
+        // 菜单文字颜色
+        fontColor:{
+            type:String,
+            default:'#303133'
+        },
+        // 激活的菜单文字颜色
+        activeFontColor:{
+            type:String,
+            default:'#409eff'
         }
     },
     data(){
         return{
             items:[],
-            activeItemIndex:''
+            activeItemIndexObj:this.activeItemIndex
         }
     },
     provide: function () {
@@ -24,16 +42,9 @@ export default {
         }
     },
     watch:{
-        // '$store.state.getarticle':async function(newFlag, oldFlag){
-        //     this.getArticleList(this.pageSize,this.curPage)
-        //     this.pageflag = true
-        // }
-        // activeItemIndex(newval,oldval){
-        //     console.log(newval)
-        // }
-    },
-    mounted(){
-        
+        activeItemIndex(newval,oldval){
+            this.activeItemIndexObj = this.activeItemIndex
+        }
     },
     methods:{
         

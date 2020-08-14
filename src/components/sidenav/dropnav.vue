@@ -1,14 +1,16 @@
 <template>
     <ul class="dropnav-box">
-        <div class="title" 
-             :style="{'padding-left':this.paddingleft+'px'}"
+        <div class="dropnav-box-title" 
+             ref="dropnavBoxTitle"
+             :style="{'padding-left':this.paddingleft+'px',
+                      'color':this.itemFontColor}"
              @click="showul"
-             @mouseenter='enter' @mouseleave="leave" >
+             @mouseenter="enter"
+             @mouseleave="leave">
             <slot name="droptitle"></slot>
             <i class="dropnav-icon" :class="[{'iconrotate':showulicon}]"></i>
         </div>
         <div class="dropul" ref="dropnavBoxUl"
-                :class="[{'hei':test}]"
                 :style="{'height':sty}">
             <slot></slot>
         </div>
@@ -31,17 +33,24 @@ export default {
             height:0,
             // 首次点击效果为收起（配合showchildren）
             firstClose:true,
-            isauto:false,
             sty:'',
             showulicon:false,
+            itemFontColor:''
         }
     },
-    watch:{
-        
+    created(){
+        this.itemFontColor = this.sidenav.fontColor
     },
     mounted(){
+        // 获取初始高度，此时获取到的是子组件均展开的高度（即使子组件可能默认不展开）
         this.height= this.$refs.dropnavBoxUl.offsetHeight
-        // console.log(this.$children)
+        // 遍历子组件，如有默认不展开的下拉框，就减去其收起的高度
+        for (let index = 0; index < this.$children.length; index++) {
+            if(this.$children[index].showchildren==false){
+                this.height-=this.$children[index].height
+            }
+        }
+        // 根据是否默认展开进行调整
         if(!this.showchildren){
             this.sty = '0px'
             this.firstClose = false
@@ -51,6 +60,7 @@ export default {
     methods:{
         showul(){
             let element = this.$refs.dropnavBoxUl
+            let ele = document.querySelector('.dropul')
             if(this.firstClose){
                 // 关闭并保存高度，开启时使用
                 this.height= element.offsetHeight
@@ -76,13 +86,13 @@ export default {
                     callback && callback()
                 }
                 this.sty = obj.offsetHeight + step + 'px'
-            }, 13);
+            }, 11);
         },
         enter(){
-
+            this.$refs.dropnavBoxTitle.style.backgroundColor = this.sidenav.backgroundHoverColor
         },
         leave(){
-
+            this.$refs.dropnavBoxTitle.style.backgroundColor = ''
         }
     }
 }
@@ -93,13 +103,7 @@ export default {
     padding: 0;
     width: 100%;
 }
-.nav-icon{
-    color: #909399;
-    vertical-align: middle;
-    margin-right: 5px;
-    padding-bottom: 1px;
-}
-.title{
+.dropnav-box-title{
     position: relative;
     height: 56px;
     line-height: 56px;
@@ -107,10 +111,7 @@ export default {
     color: #303133;
     padding: 0 20px 0 0;
     cursor: pointer;
-
-    &:hover{
-        background-color: #ecf5ff;
-    }
+    transition: background-color .3s;
 }
 .dropul{
     overflow: hidden;

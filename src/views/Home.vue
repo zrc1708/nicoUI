@@ -200,66 +200,65 @@
     </div>
     <hr>
 
-    <div class="nav" style="width:200px;border:1px solid black">
-        <ni-sidenav router>
+    <div class="nav" style="width:200px;border:1px solid black;background-color:rgb(238, 238, 238)">
+        <ni-sidenav router :activeItemIndex='activeindex'>
 
             <ni-sidenav-drop showchildren>
-                <span slot="droptitle">
-                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>个人中心
-                </span>
+                <div slot="droptitle">
+                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                       :style="{'color':'#909399'}"></i>个人中心
+                </div>
                 <ni-sidenav-item index="test5">
-                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航五
+                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                       :style="{'color':(this.$router.history.current.path=='/test12')?'#409eff':'#909399'}"></i>导航五
                 </ni-sidenav-item>
 
-                    <!-- <ni-sidenav-drop>
+                    <ni-sidenav-drop>
                         <span slot="droptitle">
-                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>无限套娃
+                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                               :style="{'color':'#909399'}"></i>无限套娃
                         </span>
                         <ni-sidenav-item index="test14">
-                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十四
+                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                               :style="{'color':(this.$router.history.current.path=='/test14')?'inherit':'#909399'}"></i>导航十四
                         </ni-sidenav-item>
-                        <ni-sidenav-item index="test15">
-                            <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十五
-                        </ni-sidenav-item>
-                        <ni-sidenav-item index="test16">
-                            <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十六
-                        </ni-sidenav-item>
-                    </ni-sidenav-drop> -->
-
+                    </ni-sidenav-drop>
 
                 <ni-sidenav-item index="test6">
-                    <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航六
+                    <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"
+                       :style="{'color':(this.$router.history.current.path=='/test6')?'#409eff':'#909399'}"></i>导航六
                 </ni-sidenav-item>
                 <ni-sidenav-item index="test7">
-                    <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航七
+                    <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"
+                       :style="{'color':(this.$router.history.current.path=='/test7')?'#409eff':'#909399'}"></i>导航七
                 </ni-sidenav-item>
 
                 <ni-sidenav-drop>
                     <span slot="droptitle">
-                        <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>个人中心2
+                        <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                           :style="{'color':'#909399'}"></i>个人中心2
                     </span>
                     <ni-sidenav-item index="test8">
-                        <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航八
-                    </ni-sidenav-item>
-                    <ni-sidenav-item index="test9">
-                        <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航九
+                        <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                           :style="{'color':(this.$router.history.current.path=='/test8')?'#409eff':'#909399'}"></i>导航八
                     </ni-sidenav-item>
                     <ni-sidenav-item index="test10">
-                        <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十
+                        <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"
+                           :style="{'color':(this.$router.history.current.path=='/test10')?'#409eff':'#909399'}"></i>导航十
                     </ni-sidenav-item>
 
-                    <ni-sidenav-drop>
+                    <ni-sidenav-drop showchildren>
                         <span slot="droptitle">
-                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>个人中心3
+                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                               :style="{'color':'#909399'}"></i>个人中心3
                         </span>
-                        <ni-sidenav-item index="test11">
-                            <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十一
-                        </ni-sidenav-item>
                         <ni-sidenav-item index="test12">
-                            <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十二
+                            <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"
+                               :style="{'color':(this.$router.history.current.path=='/test12')?'#409eff':'#909399'}"></i>导航十二
                         </ni-sidenav-item>
                         <ni-sidenav-item index="test13">
-                            <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航十三
+                            <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"
+                               :style="{'color':(this.$router.history.current.path=='/test13')?'#409eff':'#909399'}"></i>导航十三
                         </ni-sidenav-item>
                     </ni-sidenav-drop>
                 </ni-sidenav-drop>
@@ -267,16 +266,20 @@
             </ni-sidenav-drop>
 
             <ni-sidenav-item index="test1">
-              <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"></i>导航一
+              <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
+                 :style="{'color':(this.$router.history.current.path=='/test1')?'#409eff':'#909399'}"></i>导航一
             </ni-sidenav-item>
             <ni-sidenav-item index="test2">
-              <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"></i>导航二
+              <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"
+                 :style="{'color':(this.$router.history.current.path=='/test2')?'#409eff':'#909399'}"></i>导航二
             </ni-sidenav-item>
             <ni-sidenav-item index="test3">
-              <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"></i>导航三
+              <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"
+                 :style="{'color':(this.$router.history.current.path=='/test3')?'#409eff':'#909399'}"></i>导航三
             </ni-sidenav-item>
             <ni-sidenav-item index="test4">
-              <i class="fa fa-calendar nav-icon" aria-hidden="true" style="font-size:18px"></i>导航四
+              <i class="fa fa-calendar nav-icon" aria-hidden="true" style="font-size:18px"
+                 :style="{'color':(this.$router.history.current.path=='/test4')?'#409eff':'#909399'}"></i>导航四
             </ni-sidenav-item>
         </ni-sidenav>
     </div>
@@ -311,10 +314,11 @@ export default {
                 label: '北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭北京烤鸭'
               }],
             dynamicTags: ['标签一', '标签二', '标签三', '标签四'],
+            activeindex:'',
         }
     },
     mounted(){
-      
+        this.activeindex = this.$router.history.current.path.replace(/^\//,'')
     },
     methods:{
         test1(){
@@ -428,5 +432,10 @@ export default {
   width: 600px;
   height: 200px;
   border: 1px solid black;
+}
+.nav-icon{
+    vertical-align: middle;
+    margin-right: 5px;
+    padding-bottom: 1px;
 }
 </style>

@@ -1,8 +1,13 @@
 <template>
     <li class="sideitem-box" 
-        :class="[{'active':sidenav.activeItemIndex===index}]" 
+        ref="sideitemBox"
+
         @click="click"
-        :style="{'padding-left':this.paddingleft+'px'}">
+        @mouseenter="enter"
+        @mouseleave="leave"
+        :style="{'padding-left':this.paddingleft+'px',
+                'color':(sidenav.activeItemIndexObj==index)?sidenav.activeFontColor:sidenav.fontColor,
+                'background-color':(sidenav.activeItemIndexObj==index)?sidenav.backgroundHoverColor:''}">
         <slot></slot>
     </li>
 </template>
@@ -15,14 +20,12 @@ export default {
     },
     data(){
         return{
-            paddingleft:(this.$parent.paddingleft||0)+20
+            paddingleft:(this.$parent.paddingleft||0)+20,
         }
     },
     created(){
         this.sidenav.items.push(this)
-    },
-    mounted(){
-        
+        this.itemFontColor = this.sidenav.fontColor
     },
     methods:{
         click(){
@@ -33,8 +36,15 @@ export default {
                     return 0
                 }
                 this.$router.push(this.index)
-                this.sidenav.activeItemIndex = this.index
+                this.sidenav.activeItemIndexObj = this.index
             }
+        },
+        enter(){
+            this.$refs.sideitemBox.style.backgroundColor = this.sidenav.backgroundHoverColor
+        },
+        leave(){
+            if(this.sidenav.activeItemIndexObj==this.index) return 0
+            this.$refs.sideitemBox.style.backgroundColor = ''
         }
     }
 }
@@ -45,7 +55,6 @@ export default {
     height: 56px;
     line-height: 56px;
     font-size: 14px;
-    color: #303133;
     padding: 0 20px 0 0;
     cursor: pointer;
     position: relative;
@@ -53,22 +62,5 @@ export default {
     white-space: nowrap;
     font-weight: 400;
     transition: color .3s,background-color .3s;
-
-    .nav-icon{
-        color: #909399;
-        vertical-align: middle;
-        margin-right: 5px;
-        padding-bottom: 1px;
-    }
-    &:hover{
-        background-color: #ecf5ff;
-    }
-}
-.active{
-    color: #409eff;
-    background-color: #ecf5ff;
-    .nav-icon{
-        color: inherit;
-    }
 }
 </style>
