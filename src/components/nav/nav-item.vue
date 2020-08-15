@@ -1,20 +1,21 @@
 <template>
-    <li class="sideitem-box" 
-        ref="sideitemBox"
-
+    <li class="item-box" 
+        :class="[{'headbox':nav.type=='head'}]"
+        ref="itemBox"
         @click="click"
         @mouseenter="enter"
         @mouseleave="leave"
-        :style="{'padding-left':this.paddingleft+'px',
-                'color':(sidenav.activeItemIndexObj==index)?sidenav.activeFontColor:sidenav.fontColor,
-                'background-color':(sidenav.activeItemIndexObj==index)?sidenav.backgroundHoverColor:''}">
+        :style="{'padding-left':nav.type=='side'?this.paddingleft+'px':'',
+                'color':(nav.activeItemIndexObj==index)?nav.activeFontColor:nav.fontColor,
+                'background-color':(nav.activeItemIndexObj==index)?nav.backgroundHoverColor:'',
+                'border-bottom': (nav.type=='head'&&nav.activeItemIndexObj==index)?`2px solid ${this.nav.headBottomColor}`:''}">
         <slot></slot>
     </li>
 </template>
 <script>
 export default {
-    name:'ni-sidenav-item',
-    inject: ['sidenav'],
+    name:'ni-nav-item',
+    inject: ['nav'],
     props:{
         index:{},
     },
@@ -24,33 +25,32 @@ export default {
         }
     },
     created(){
-        this.sidenav.items.push(this)
-        this.itemFontColor = this.sidenav.fontColor
+        this.nav.items.push(this)
     },
     methods:{
         click(){
-            if(!this.sidenav.router){
+            if(!this.nav.router){
                 this.$emit('click')
             }else{
                 if(this.$router.history.current.path==='/'+this.index){
                     return 0
                 }
                 this.$router.push(this.index)
-                this.sidenav.activeItemIndexObj = this.index
+                this.nav.activeItemIndexObj = this.index
             }
         },
         enter(){
-            this.$refs.sideitemBox.style.backgroundColor = this.sidenav.backgroundHoverColor
+            this.$refs.itemBox.style.backgroundColor = this.nav.backgroundHoverColor
         },
         leave(){
-            if(this.sidenav.activeItemIndexObj==this.index) return 0
-            this.$refs.sideitemBox.style.backgroundColor = ''
+            if(this.nav.activeItemIndexObj==this.index) return 0
+            this.$refs.itemBox.style.backgroundColor = ''
         }
     }
 }
 </script>
 <style lang="less" scoped>
-.sideitem-box{
+.item-box{
     list-style: none;
     height: 56px;
     line-height: 56px;
@@ -61,6 +61,9 @@ export default {
     box-sizing: border-box;
     white-space: nowrap;
     font-weight: 400;
-    transition: color .3s,background-color .3s;
+    transition: all .3s;
+}
+.headbox{
+    padding: 0 30px;
 }
 </style>

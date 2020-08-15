@@ -1,8 +1,9 @@
 <template>
-    <ul class="dropnav-box">
+    <li class="dropnav-box">
         <div class="dropnav-box-title" 
+             :class="[nav.type=='head'?'headdropbox':'']"
              ref="dropnavBoxTitle"
-             :style="{'padding-left':this.paddingleft+'px',
+             :style="{'padding-left':nav.type=='side'?this.paddingleft+'px':'',
                       'color':this.itemFontColor}"
              @click="showul"
              @mouseenter="enter"
@@ -10,16 +11,18 @@
             <slot name="droptitle"></slot>
             <i class="dropnav-icon" :class="[{'iconrotate':showulicon}]"></i>
         </div>
-        <div class="dropul" ref="dropnavBoxUl"
-                :style="{'height':sty}">
+        <div v-if="nav.type=='side'" class="dropchildren" ref="dropnavChildrenBox" :style="{'height':sty}">
             <slot></slot>
         </div>
-    </ul>
+        <div v-else>
+            <slot></slot>
+        </div>
+    </li>
 </template>
 <script>
 export default {
     name:'ni-sidenav-drop',
-    inject: ['sidenav'],
+    inject: ['nav'],
     props:{
         // 是否默认展开
         showchildren:{
@@ -39,11 +42,11 @@ export default {
         }
     },
     created(){
-        this.itemFontColor = this.sidenav.fontColor
+        this.itemFontColor = this.nav.fontColor
     },
     mounted(){
         // 获取初始高度，此时获取到的是子组件均展开的高度（即使子组件可能默认不展开）
-        this.height= this.$refs.dropnavBoxUl.offsetHeight
+        this.height= this.$refs.dropnavChildrenBox.offsetHeight
         // 遍历子组件，如有默认不展开的下拉框，就减去其收起的高度
         for (let index = 0; index < this.$children.length; index++) {
             if(this.$children[index].showchildren==false){
@@ -59,7 +62,7 @@ export default {
     },
     methods:{
         showul(){
-            let element = this.$refs.dropnavBoxUl
+            let element = this.$refs.dropnavChildrenBox
             let ele = document.querySelector('.dropul')
             if(this.firstClose){
                 // 关闭并保存高度，开启时使用
@@ -89,7 +92,7 @@ export default {
             }, 11);
         },
         enter(){
-            this.$refs.dropnavBoxTitle.style.backgroundColor = this.sidenav.backgroundHoverColor
+            this.$refs.dropnavBoxTitle.style.backgroundColor = this.nav.backgroundHoverColor
         },
         leave(){
             this.$refs.dropnavBoxTitle.style.backgroundColor = ''
@@ -99,9 +102,8 @@ export default {
 </script>
 <style lang="less" scoped>
 .dropnav-box{
-    width: 0;
-    padding: 0;
-    width: 100%;
+    list-style: none;
+    position: relative;
 }
 .dropnav-box-title{
     position: relative;
@@ -113,7 +115,10 @@ export default {
     cursor: pointer;
     transition: background-color .3s;
 }
-.dropul{
+.headdropbox{
+    padding: 0 20px;
+}
+.dropchildren{
     overflow: hidden;
 }
 .dropnav-icon{

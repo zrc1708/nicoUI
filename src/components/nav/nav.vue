@@ -1,5 +1,5 @@
 <template>
-    <ul class="sidenav-box">
+    <ul class="sidenav-box" :class="[{'head':type=='head'}]">
         <slot></slot>
     </ul>
 </template>
@@ -7,6 +7,14 @@
 export default {
     name:'ni-sidenav',
     props:{
+        // 导航的种类
+        type:{
+            type:String,
+            default:'side',
+            validator(value) {
+                return ['side','head'].indexOf(value) !== -1
+            }
+        },
         // 是否开启路由
         router:{
             type:Boolean,
@@ -14,7 +22,7 @@ export default {
         },
         // 当前激活的菜单的index
         activeItemIndex:{},
-        // 菜单鼠标悬浮的背景颜色
+        // 菜单鼠标悬浮/激活的背景颜色
         backgroundHoverColor:{
             type:String,
             default:'#ecf5ff'
@@ -28,7 +36,12 @@ export default {
         activeFontColor:{
             type:String,
             default:'#409eff'
-        }
+        },
+        // 激活菜单的下划线的颜色（head模式）
+        headBottomColor:{
+            type:String,
+            default:'#409eff'
+        },
     },
     data(){
         return{
@@ -38,7 +51,7 @@ export default {
     },
     provide: function () {
         return {
-            'sidenav': this
+            'nav': this
         }
     },
     watch:{
@@ -56,5 +69,8 @@ export default {
     width: 100%;
     margin: 0;
     padding: 0;
+}
+.head{
+    display: flex;
 }
 </style>
