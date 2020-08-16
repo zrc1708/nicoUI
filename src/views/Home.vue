@@ -200,10 +200,10 @@
     </div>
     <hr>
 
-    <div style="width:200px;border:1px solid black;background-color:rgb(238, 238, 238)">
-        <ni-sidenav router type="side" :activeItemIndex='activeindex'>
+    <div style="width:200px;background-color:rgb(238, 238, 238)">
+        <ni-nav router type="side" :activeItemIndex='activeindex'>
 
-            <ni-sidenav-drop showchildren>
+            <ni-nav-drop showchildren>
                 <div slot="droptitle">
                     <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
                        :style="{'color':'#909399'}"></i>个人中心
@@ -216,7 +216,7 @@
                   <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"
                     :style="{'color':(this.$router.history.current.path=='/test3')?'#409eff':'#909399'}"></i>导航三
                 </ni-nav-item>
-                    <ni-sidenav-drop>
+                    <ni-nav-drop>
                         <span slot="droptitle">
                             <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
                                :style="{'color':'#909399'}"></i>无限套娃
@@ -225,7 +225,7 @@
                             <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
                                :style="{'color':(this.$router.history.current.path=='/test14')?'inherit':'#909399'}"></i>导航十四
                         </ni-nav-item>
-                    </ni-sidenav-drop>
+                    </ni-nav-drop>
 
                 <ni-nav-item index="test6">
                     <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"
@@ -236,7 +236,7 @@
                        :style="{'color':(this.$router.history.current.path=='/test7')?'#409eff':'#909399'}"></i>导航七
                 </ni-nav-item>
 
-                <ni-sidenav-drop>
+                <ni-nav-drop>
                     <span slot="droptitle">
                         <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
                            :style="{'color':'#909399'}"></i>个人中心2
@@ -250,7 +250,7 @@
                            :style="{'color':(this.$router.history.current.path=='/test10')?'#409eff':'#909399'}"></i>导航十
                     </ni-nav-item>
 
-                    <ni-sidenav-drop showchildren>
+                    <ni-nav-drop showchildren>
                         <span slot="droptitle">
                             <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
                                :style="{'color':'#909399'}"></i>个人中心3
@@ -263,10 +263,10 @@
                             <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"
                                :style="{'color':(this.$router.history.current.path=='/test13')?'#409eff':'#909399'}"></i>导航十三
                         </ni-nav-item>
-                    </ni-sidenav-drop>
-                </ni-sidenav-drop>
+                    </ni-nav-drop>
+                </ni-nav-drop>
 
-            </ni-sidenav-drop>
+            </ni-nav-drop>
 
             <ni-nav-item index="test1">
               <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
@@ -280,36 +280,72 @@
               <i class="fa fa-calendar nav-icon" aria-hidden="true" style="font-size:18px"
                  :style="{'color':(this.$router.history.current.path=='/test4')?'#409eff':'#909399'}"></i>导航四
             </ni-nav-item>
-        </ni-sidenav>
+        </ni-nav>
     </div>
+    <hr>
 
-    <div style="width:100%;border:1px solid black;background-color:rgb(238, 238, 238)">
-        <ni-sidenav router type="head" :activeItemIndex='activeindex'>
-            <ni-nav-item index="test1">
-              <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
-                  :style="{'color':(this.$router.history.current.path=='/test1')?'#409eff':'#909399'}"></i>导航一
-            </ni-nav-item>
-            <ni-sidenav-drop>
-                <span slot="droptitle">
-                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
-                        :style="{'color':'#909399'}"></i>无限套娃
-                </span>
-                <ni-nav-item index="test14">
-                    <i class="fa fa-address-book nav-icon" aria-hidden="true" style="font-size:18px"
-                        :style="{'color':(this.$router.history.current.path=='/test14')?'inherit':'#909399'}"></i>导航十四
-                </ni-nav-item>
-            </ni-sidenav-drop>
-            <ni-nav-item index="test2">
-              <i class="fa fa-folder nav-icon" aria-hidden="true" style="font-size:18px"
-                  :style="{'color':(this.$router.history.current.path=='/test2')?'#409eff':'#909399'}"></i>导航二
-            </ni-nav-item>
-            <ni-nav-item index="test3">
-              <i class="fa fa-envelope nav-icon" aria-hidden="true" style="font-size:18px"
-                  :style="{'color':(this.$router.history.current.path=='/test3')?'#409eff':'#909399'}"></i>导航三
-            </ni-nav-item>
-        </ni-sidenav>
+    <div style="width:100%;background-color:rgb(238, 238, 238)">
+        <ni-nav router type="head" :activeItemIndex='activeindex'>
+            <ni-nav-item index="test1">导航一</ni-nav-item>
+
+            <ni-nav-drop>
+                <span slot="droptitle">无限套娃</span>
+                <ni-nav-item index="test13">导航十三</ni-nav-item>
+
+                <ni-nav-drop>
+                    <span slot="droptitle">继续套娃</span>
+                    <ni-nav-item index="test15">导航十五</ni-nav-item>
+                    <ni-nav-item index="test2">导航二</ni-nav-item>
+
+                    <ni-nav-drop>
+                        <span slot="droptitle">继续继续</span>
+                        <ni-nav-item index="test16">导航十六</ni-nav-item>
+                        <ni-nav-item index="test17">导航十七</ni-nav-item>
+                    </ni-nav-drop>
+
+                    <ni-nav-item index="test14">导航十四</ni-nav-item>
+                </ni-nav-drop>
+            </ni-nav-drop>
+            
+            <ni-nav-drop>
+                <span slot="droptitle">继续套娃</span>
+                <ni-nav-item index="test3">导航三</ni-nav-item>
+            </ni-nav-drop>
+        </ni-nav>
     </div>
-    
+    <hr>
+
+    <div style="width:100%;background-color:rgb(238, 238, 238)">
+        <ni-nav type="head">
+            <ni-nav-item index="test1" @click="test1">导航一</ni-nav-item>
+
+            <ni-nav-drop>
+                <span slot="droptitle">无限套娃</span>
+                <ni-nav-item index="test13" @click="test1">导航十三</ni-nav-item>
+
+                <ni-nav-drop>
+                    <span slot="droptitle">继续套娃</span>
+                    <ni-nav-item index="test15" @click="test1">导航十五</ni-nav-item>
+                    <ni-nav-item index="test2" @click="test1">导航二</ni-nav-item>
+
+                    <ni-nav-drop>
+                        <span slot="droptitle">继续继续</span>
+                        <ni-nav-item index="test16" @click="test1">导航十六</ni-nav-item>
+                        <ni-nav-item index="test17" @click="test1">导航十七</ni-nav-item>
+                    </ni-nav-drop>
+
+                    <ni-nav-item index="test14" @click="test1">导航十四</ni-nav-item>
+                </ni-nav-drop>
+            </ni-nav-drop>
+            
+            <ni-nav-drop>
+                <span slot="droptitle">继续套娃</span>
+                <ni-nav-item index="test3" @click="test1">导航三</ni-nav-item>
+            </ni-nav-drop>
+        </ni-nav>
+    </div>
+    <hr>
+
   </div>
 </template>
 

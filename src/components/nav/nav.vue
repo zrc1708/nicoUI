@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-    name:'ni-sidenav',
+    name:'ni-nav',
     props:{
         // 导航的种类
         type:{
@@ -42,6 +42,11 @@ export default {
             type:String,
             default:'#409eff'
         },
+        // 下拉列表背景色（head模式）
+        headBackgroundColor:{
+            type:String,
+            default:'rgb(238, 238, 238)'
+        },
     },
     data(){
         return{
@@ -57,10 +62,19 @@ export default {
     watch:{
         activeItemIndex(newval,oldval){
             this.activeItemIndexObj = this.activeItemIndex
+            if(this.type=='head'){
+                let item = this.items.find(item => item.index==newval)
+                if(item.$parent.$options.name=='ni-nav'){
+                    return 0
+                }
+                while(item.$parent.$options.name=='ni-nav-drop'){
+                    item = item.$parent
+                }
+                item.indexhead = newval
+                item.showHeadChildren = false
+                item.showulicon = false
+            }
         }
-    },
-    methods:{
-        
     }
 }
 </script>

@@ -1,10 +1,14 @@
 <template>
-    <li class="dropnav-box">
+    <li class="dropnav-box" 
+            @mouseenter="headenter"
+            @mouseleave="headleave">
         <div class="dropnav-box-title" 
              :class="[nav.type=='head'?'headdropbox':'']"
              ref="dropnavBoxTitle"
              :style="{'padding-left':nav.type=='side'?this.paddingleft+'px':'',
-                      'color':this.itemFontColor}"
+                      'background-color':(nav.type=='head'&&nav.activeItemIndexObj==indexhead)?nav.backgroundHoverColor:'',
+                      'color':this.itemFontColor,
+                      'border-bottom': (nav.type=='head'&&nav.activeItemIndexObj==indexhead)?`2px solid ${this.nav.headBottomColor}`:''}"
              @click="showul"
              @mouseenter="enter"
              @mouseleave="leave">
@@ -14,17 +18,22 @@
         <div v-if="nav.type=='side'" class="dropchildren" ref="dropnavChildrenBox" :style="{'height':sty}">
             <slot></slot>
         </div>
-        <div v-else>
-            <slot></slot>
-        </div>
+        <transition name="dropchildren-head" v-else>
+            <div class="dropchildren-head"
+                 :class="[{'dropchildren-head-children':this.$parent.$options.name!=='ni-nav'}]"
+                 :style="{'background-color':nav.headBackgroundColor}"
+                 v-show="showHeadChildren">
+                <slot></slot>
+            </div>
+        </transition>
     </li>
 </template>
 <script>
 export default {
-    name:'ni-sidenav-drop',
+    name:'ni-nav-drop',
     inject: ['nav'],
     props:{
-        // 是否默认展开
+        // 是否默认展开(side模式)
         showchildren:{
             type:Boolean,
             default:false
@@ -34,50 +43,59 @@ export default {
         return{
             paddingleft:(this.$parent.paddingleft||0)+20,
             height:0,
-            // 首次点击效果为收起（配合showchildren）
-            firstClose:true,
+            firstClose:true, // 首次点击效果为收起（配合showchildren）
             sty:'',
-            showulicon:false,
-            itemFontColor:''
+            showulicon:false,   //控制箭头朝向
+            itemFontColor:'',
+            showHeadChildren:false, //控制head模式下下拉列表的显示
+            indexhead:'ni-ui-default',   //head模式控制样式
         }
     },
     created(){
         this.itemFontColor = this.nav.fontColor
     },
     mounted(){
-        // 获取初始高度，此时获取到的是子组件均展开的高度（即使子组件可能默认不展开）
-        this.height= this.$refs.dropnavChildrenBox.offsetHeight
-        // 遍历子组件，如有默认不展开的下拉框，就减去其收起的高度
-        for (let index = 0; index < this.$children.length; index++) {
-            if(this.$children[index].showchildren==false){
-                this.height-=this.$children[index].height
+        if(this.nav.type=='side'){
+            // 获取初始高度，此时获取到的是子组件均展开的高度（即使子组件可能默认不展开）
+            this.height= this.$refs.dropnavChildrenBox.offsetHeight
+            // 遍历子组件，如有默认不展开的下拉框，就减去其收起的高度
+            for (let index = 0; index < this.$children.length; index++) {
+                if(this.$children[index].showchildren==false){
+                    this.height-=this.$children[index].height
+                }
             }
-        }
-        // 根据是否默认展开进行调整
-        if(!this.showchildren){
-            this.sty = '0px'
-            this.firstClose = false
-            this.showulicon = true
+            // 根据是否默认展开进行调整
+            if(!this.showchildren){
+                this.sty = '0px'
+                this.firstClose = false
+                this.showulicon = !this.showulicon
+            }
         }
     },
     methods:{
         showul(){
-            let element = this.$refs.dropnavChildrenBox
-            let ele = document.querySelector('.dropul')
-            if(this.firstClose){
-                // 关闭并保存高度，开启时使用
-                this.height= element.offsetHeight
-                this.showulicon = true
-                this.animate(element,0)
-                
+            if(this.nav.type=='side'){
+                let element = this.$refs.dropnavChildrenBox
+                let ele = document.querySelector('.dropul')
+                if(this.firstClose){
+                    // 关闭并保存高度，开启时使用
+                    this.height= element.offsetHeight
+                    this.showulicon = !this.showulicon
+                    this.animate(element,0)
+                    
+                }else{
+                    // 开启
+                    this.showulicon = !this.showulicon
+                    this.animate(element,this.height,()=>{
+                        element.style.height = 'auto'
+                    })
+                }
+                this.firstClose = !this.firstClose
             }else{
-                // 开启
-                this.showulicon = false
-                this.animate(element,this.height,()=>{
-                    element.style.height = 'auto'
-                })
+                window.clearTimeout(this.timer)
+                this.showHeadChildren = !this.showHeadChildren
+                this.showulicon = !this.showulicon
             }
-            this.firstClose = !this.firstClose
         },
         animate(obj, target, callback){
             clearInterval(obj.timer);
@@ -96,6 +114,21 @@ export default {
         },
         leave(){
             this.$refs.dropnavBoxTitle.style.backgroundColor = ''
+        },
+        headenter(){
+            this.timer = setTimeout(() => {
+                if(this.nav.type=='head'){
+                    this.showHeadChildren = true
+                    this.showulicon = true
+                }
+            }, 200);
+        },
+        headleave(){
+            window.clearTimeout(this.timer)
+            if(this.nav.type=='head'){
+                this.showHeadChildren = false
+                this.showulicon = false
+            }
         }
     }
 }
@@ -114,10 +147,12 @@ export default {
     padding: 0 20px 0 0;
     cursor: pointer;
     transition: background-color .3s;
+    box-sizing: border-box;
 }
 .headdropbox{
-    padding: 0 20px;
+    padding: 0 40px 0 20px;
 }
+// 侧栏
 .dropchildren{
     overflow: hidden;
 }
@@ -157,5 +192,26 @@ export default {
 }
 .iconrotate{
     transform: translateY(-50%) rotate(180deg);
+}
+// 顶部
+.dropchildren-head{
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+}
+.dropchildren-head-children{
+    top: 0;
+    left: 100%;
+}
+.dropchildren-head-enter-active,.dropchildren-head-leave-active{
+    opacity:1;
+    transform:scaleY(1);
+    transition:transform .3s cubic-bezier(.23,1,.32,1),
+                opacity .3s cubic-bezier(.23,1,.32,1);
+    transform-origin: top
+}
+.dropchildren-head-enter,.dropchildren-head-leave-active{
+    opacity:0;
+    transform:scaleY(0)
 }
 </style>
