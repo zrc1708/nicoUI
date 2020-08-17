@@ -200,7 +200,7 @@
     </div>
     <hr>
 
-    <div style="width:200px;background-color:rgb(238, 238, 238)">
+    <div style="width:200px;background-color:#e4e7ed">
         <ni-nav router type="side" :activeItemIndex='activeindex'>
 
             <ni-nav-drop showchildren>
@@ -284,7 +284,7 @@
     </div>
     <hr>
 
-    <div style="width:100%;background-color:rgb(238, 238, 238)">
+    <div style="width:100%;background-color:#e4e7ed">
         <ni-nav router type="head" :activeItemIndex='activeindex'>
             <ni-nav-item index="test1">导航一</ni-nav-item>
 
@@ -315,8 +315,8 @@
     </div>
     <hr>
 
-    <div style="width:100%;background-color:rgb(238, 238, 238)">
-        <ni-nav type="head">
+    <div style="width:100%;background-color:#e4e7ed">
+        <ni-nav type="head" headBackgroundColor="#e4e7ed">
             <ni-nav-item index="test1" @click="test1">导航一</ni-nav-item>
 
             <ni-nav-drop>
@@ -346,6 +346,30 @@
     </div>
     <hr>
 
+    <ni-tabs>
+        <ni-tab-item label="用户管理">用户管理</ni-tab-item>
+        <ni-tab-item label="配置管理">配置管理</ni-tab-item>
+        <ni-tab-item label="我的订单">我的订单</ni-tab-item>
+        <ni-tab-item label="我的库存">我的库存</ni-tab-item>
+    </ni-tabs>
+    <hr>
+    <ni-tabs type="card">
+        <ni-tab-item label="用户管理">用户管理</ni-tab-item>
+        <ni-tab-item label="配置管理">配置管理</ni-tab-item>
+        <ni-tab-item label="我的订单">我的订单</ni-tab-item>
+        <ni-tab-item label="我的库存">我的库存</ni-tab-item>
+    </ni-tabs>
+    <hr>
+    <ni-tabs closeable @tabRemove="tabremove">
+        <ni-tab-item :label="item" v-for="item in tabArr" :key="item">{{item}}</ni-tab-item>
+    </ni-tabs>
+    <hr>
+    <ni-tabs type="card" closeable>
+        <ni-tab-item label="用户管理">用户管理</ni-tab-item>
+        <ni-tab-item label="配置管理">配置管理</ni-tab-item>
+        <ni-tab-item label="我的订单">我的订单</ni-tab-item>
+        <ni-tab-item label="我的库存">我的库存</ni-tab-item>
+    </ni-tabs>
   </div>
 </template>
 
@@ -378,6 +402,7 @@ export default {
               }],
             dynamicTags: ['标签一', '标签二', '标签三', '标签四'],
             activeindex:'',
+            tabArr:['标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8'],
         }
     },
     mounted(){
@@ -463,6 +488,9 @@ export default {
         },
         clicktag(tag){
           console.log(tag)
+        },
+        tabremove(label,index){
+            this.tabArr.splice(index,1)
         }
     }
 }

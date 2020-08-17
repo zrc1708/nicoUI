@@ -19,6 +19,8 @@ import breadcrumbitem from './breadcrumbs/breadcrumbitem.vue'
 import nav from './nav/nav.vue'
 import navitem from './nav/nav-item.vue'
 import navdrop from './nav/nav-drop.vue'
+import tabs from './tabs/tabs.vue'
+import tabitem from './tabs/tab-item.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -49,6 +51,8 @@ const components = [
     nav,
     navitem,
     navdrop,
+    tabs,
+    tabitem
 ]
 
 // 定义 install 方法
