@@ -142,7 +142,7 @@ export default {
     position: relative;
     height: 56px;
     line-height: 56px;
-    font-size: 14px;
+    font-size: 16px;
     color: #303133;
     padding: 0 20px 0 0;
     cursor: pointer;

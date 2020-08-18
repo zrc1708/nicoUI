@@ -64,8 +64,7 @@ export default {
     list-style: none;
     height: 56px;
     line-height: 56px;
-    font-size: 14px;
-    // padding: 0 20px 0 0;
+    font-size: 16px;
     cursor: pointer;
     position: relative;
     box-sizing: border-box;

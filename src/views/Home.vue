@@ -370,6 +370,12 @@
         <ni-tab-item label="我的订单">我的订单</ni-tab-item>
         <ni-tab-item label="我的库存">我的库存</ni-tab-item>
     </ni-tabs>
+    <hr>
+
+    <ni-radio label="1" v-model="radio" @change="radiochange">选项一</ni-radio>
+    <ni-radio label="2" v-model="radio" @change="radiochange">选项二</ni-radio>
+    <ni-radio label="3" v-model="radio" @change="radiochange">选项三</ni-radio>
+    <br>radio:{{radio}}
   </div>
 </template>
 
@@ -403,6 +409,7 @@ export default {
             dynamicTags: ['标签一', '标签二', '标签三', '标签四'],
             activeindex:'',
             tabArr:['标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8'],
+            radio:'',
         }
     },
     mounted(){
@@ -491,13 +498,16 @@ export default {
         },
         tabremove(label,index){
             this.tabArr.splice(index,1)
+        },
+        radiochange(val){
+            console.log(val)
         }
     }
 }
 </script>
 <style lang="less" scoped>
 .home{
-  height: 3000px;
+  height: 4000px;
 }
 .swiper-box{
   width: 600px;

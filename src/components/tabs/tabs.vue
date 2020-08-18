@@ -115,7 +115,7 @@ export default {
     vertical-align: middle;
     margin-left: 10px;
     margin-right: -10px;
-    border: 1px solid #dcdfe6;
+    border: 1px solid transparent;
     border-radius: 50%;
 
     &::before{
@@ -143,7 +143,7 @@ export default {
         transform: rotate(-45deg);
     }
     &:hover{
-        border-color: #c0c4cc;
+        border-color: #dcdfe6;
     }
     &:active::after,&:active::before{
         background-color: #409eff;

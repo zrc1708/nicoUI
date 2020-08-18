@@ -21,6 +21,7 @@ import navitem from './nav/nav-item.vue'
 import navdrop from './nav/nav-drop.vue'
 import tabs from './tabs/tabs.vue'
 import tabitem from './tabs/tab-item.vue'
+import radio from './radio/radio.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -52,7 +53,8 @@ const components = [
     navitem,
     navdrop,
     tabs,
-    tabitem
+    tabitem,
+    radio,
 ]
 
 // 定义 install 方法
