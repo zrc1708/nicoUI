@@ -20,7 +20,6 @@
 <style lang="less" scoped>
 .swiper-item{
     float: left;
-    // width: 20%;
     height: 100%;
     overflow: hidden;
 }

@@ -22,6 +22,8 @@ import navdrop from './nav/nav-drop.vue'
 import tabs from './tabs/tabs.vue'
 import tabitem from './tabs/tab-item.vue'
 import radio from './radio/radio.vue'
+import checkboxgroup from './checkbox/checkbox-group.vue'
+import checkbox from './checkbox/checkbox.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -55,6 +57,8 @@ const components = [
     tabs,
     tabitem,
     radio,
+    checkboxgroup,
+    checkbox,
 ]
 
 // 定义 install 方法

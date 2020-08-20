@@ -1,14 +1,17 @@
 <template>
-    <label ref="niRadioLabel" class="ni-radio-box">
+    <label ref="niRadioLabel" class="ni-radio-box" >
         <span class="inputicon"
-              :class="[{'radio-selected':label==model}]"></span>
-        <input type="radio" 
+              :class="[{'radio-selected':label==model},
+                       {'radio-selected-disabled':(label==model)&&disabled}]"></span>
+        <input type="radio"
+               ref="radio" 
                class="ni-radio-input" 
                @change="handleChange"
                :value="label"
                v-model="model">
         <span class="ni-radio-label"
-              :class="[{'label-selected':label==model}]">
+              :class="[{'label-selected':label==model},
+                       {'label-disabled':disabled}]">
             <slot></slot>
         </span>
     </label>
@@ -19,6 +22,15 @@ export default {
     props:{
         value:{},
         label:{},
+        disabled:{
+            type:Boolean,
+            default:false
+        }
+    },
+    watch:{
+        disabled(newval,oldval){
+            this.$refs.radio.disabled = newval
+        }
     },
     computed:{
         model:{
@@ -35,7 +47,7 @@ export default {
             this.$nextTick(() => {
                 this.$emit('change', this.model);
             });
-        }
+        },
     }
 }
 </script>
@@ -74,6 +86,7 @@ export default {
 }
 .ni-radio-box{
     position: relative;
+    user-select: none;
 }
 .ni-radio-input{
     position: absolute;
@@ -83,7 +96,6 @@ export default {
     z-index: -1;
 }
 .ni-radio-label{
-    font-size: 16px;
     padding: 0 5px 0 10px;
     color: #606266;
     font-weight: 500;
@@ -94,5 +106,16 @@ export default {
 }
 .label-selected{
     color: #409eff;
+}
+.label-disabled{
+    color: #c0c4cc;
+    cursor: not-allowed;
+}
+.radio-selected-disabled{
+    background-color: #fff;
+    border-color: #dcdfe6;
+    &::before{
+        background-color: #c0c4cc;
+    }
 }
 </style>

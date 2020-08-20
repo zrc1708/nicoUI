@@ -12,12 +12,12 @@
     <ni-button type='warn'>主要按钮</ni-button>
     <ni-button type='error'>主要按钮</ni-button>
     <div>禁用</div>
-    <ni-button type='default' disabled>主要按钮</ni-button>
-    <ni-button type='primary' disabled  @click="button3">主要按钮</ni-button>
-    <ni-button type='success' disabled>主要按钮</ni-button>
-    <ni-button type='info' disabled>主要按钮</ni-button>
-    <ni-button type='warn' disabled>主要按钮</ni-button>
-    <ni-button type='error' disabled>主要按钮</ni-button>
+    <ni-button type='default' :disabled="disableflag">主要按钮</ni-button>
+    <ni-button type='primary' :disabled="disableflag"  @click="button3">主要按钮</ni-button>
+    <ni-button type='success' :disabled="disableflag">主要按钮</ni-button>
+    <ni-button type='info' :disabled="disableflag">主要按钮</ni-button>
+    <ni-button type='warn' :disabled="disableflag">主要按钮</ni-button>
+    <ni-button type='error' :disabled="disableflag">主要按钮</ni-button>
     <div>尺寸</div>
     <ni-button type='default'>默认尺寸</ni-button>
     <ni-button type='default' size='medium'>中等尺寸</ni-button>
@@ -375,7 +375,23 @@
     <ni-radio label="1" v-model="radio" @change="radiochange">选项一</ni-radio>
     <ni-radio label="2" v-model="radio" @change="radiochange">选项二</ni-radio>
     <ni-radio label="3" v-model="radio" @change="radiochange">选项三</ni-radio>
+    <br>
+    <ni-radio label="1" v-model="radio" @change="radiochange" :disabled="disableflag">选项一</ni-radio>
+    <ni-radio label="2" v-model="radio" @change="radiochange" :disabled="disableflag">选项二</ni-radio>
+    <ni-radio label="3" v-model="radio" @change="radiochange" :disabled="disableflag">选项三</ni-radio>
     <br>radio:{{radio}}
+    <ni-button type='default' @click="changedisableflag">主要按钮</ni-button>
+    <hr>
+
+    <ni-checkbox-group v-model="checkbox" 
+                       @change="radiochange"
+                       :max="3">
+        <ni-checkbox label="北京"></ni-checkbox>
+        <ni-checkbox label="上海"></ni-checkbox>
+        <ni-checkbox label="广州"></ni-checkbox>
+        <ni-checkbox label="深圳"></ni-checkbox>
+        <ni-checkbox chooseAll>选择全部</ni-checkbox>
+    </ni-checkbox-group>
   </div>
 </template>
 
@@ -410,6 +426,8 @@ export default {
             activeindex:'',
             tabArr:['标签1','标签2','标签3','标签4','标签5','标签6','标签7','标签8'],
             radio:'',
+            disableflag:true,
+            checkbox:['北京','上海'],
         }
     },
     mounted(){
@@ -498,6 +516,12 @@ export default {
         },
         tabremove(label,index){
             this.tabArr.splice(index,1)
+        },
+        radiochange(val){
+            console.log(val)
+        },
+        changedisableflag(){
+          this.disableflag = !this.disableflag
         },
         radiochange(val){
             console.log(val)
