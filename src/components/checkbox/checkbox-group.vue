@@ -21,6 +21,8 @@ export default {
             items:[],
             allItemsArr:[],
             isChoosedAll:false,
+            maxlimit:false,
+            minlimit:false
         }
     },
     created(){
@@ -44,6 +46,16 @@ export default {
                 this.isChoosedAll = true
             }else{
                 this.isChoosedAll = false
+            }
+            if(this.max&&this.max===this.radiovalue.length){
+                this.maxlimit = true
+            }else{
+                this.maxlimit = false
+            }
+            if(this.min&&this.min===this.radiovalue.length){
+                this.minlimit = true
+            }else{
+                this.minlimit = false
             }
             this.$emit('change', newval);
         }

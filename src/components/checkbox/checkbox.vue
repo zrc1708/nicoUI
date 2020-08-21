@@ -1,12 +1,24 @@
 <template>
     <label v-if="!chooseAll" class="ni-checkbox-box">
         <span class="ni-checkbox-icon"
-              :class="{'is-checked':$parent.radiovalue.indexOf(label)!==-1}"></span>
+              :class="{'is-checked':$parent.radiovalue.indexOf(label)!==-1,
+                       'is-icon-disabled':
+                            ($parent.maxlimit&&$parent.radiovalue.indexOf(label)===-1)||
+                            disabled,
+                        'is-icon-checked-disabled':($parent.minlimit&&$parent.radiovalue.indexOf(label)!==-1)}">
+        </span>
         <input class="ni-checkbox"
                type="checkbox" 
+               :disabled="($parent.maxlimit&&$parent.radiovalue.indexOf(label)===-1)||
+                          ($parent.minlimit&&$parent.radiovalue.indexOf(label)!==-1)||
+                          disabled"
                :value="label"
                v-model="$parent.radiovalue">
-        <span class="ni-checkbox-label">{{label}}</span>
+        <span class="ni-checkbox-label"
+              :class="{'is-label-disabled':
+                        ($parent.maxlimit&&$parent.radiovalue.indexOf(label)===-1)||
+                        ($parent.minlimit&&$parent.radiovalue.indexOf(label)!==-1)||
+                        disabled}">{{label}}</span>
     </label>
     <label v-else class="ni-checkbox-box" @click="chooseAllRadio">
         <span class="ni-checkbox-icon"
@@ -20,6 +32,10 @@ export default {
     props:{
         label:{},
         chooseAll:{
+            type:Boolean,
+            default:false
+        },
+        disabled:{
             type:Boolean,
             default:false
         }
@@ -43,7 +59,7 @@ export default {
                 this.$parent.radiovalue = this.$parent.allItemsArr
             }
             this.$parent.isChoosedAll = !this.$parent.isChoosedAll
-        }
+        },
     }
 }
 </script>
@@ -100,5 +116,20 @@ export default {
 .ni-checkbox-label{
     vertical-align: middle;
     margin-left: 10px;
+}
+.is-icon-disabled{
+    background-color: #f2f6fc;
+    border-color: #dcdfe6;
+}
+.is-icon-checked-disabled{
+    background-color: #f2f6fc;
+    border-color: #dcdfe6;
+    &::before{
+        border-color: #c0c4cc;
+    }
+}
+.is-label-disabled{
+    color: #c0c4cc;
+    cursor: not-allowed
 }
 </style>

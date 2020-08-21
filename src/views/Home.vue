@@ -385,7 +385,8 @@
 
     <ni-checkbox-group v-model="checkbox" 
                        @change="radiochange"
-                       :max="3">
+                       :max="3"
+                       :min="1">
         <ni-checkbox label="北京"></ni-checkbox>
         <ni-checkbox label="上海"></ni-checkbox>
         <ni-checkbox label="广州"></ni-checkbox>
