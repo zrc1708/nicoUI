@@ -24,6 +24,7 @@ import tabitem from './tabs/tab-item.vue'
 import radio from './radio/radio.vue'
 import checkboxgroup from './checkbox/checkbox-group.vue'
 import checkbox from './checkbox/checkbox.vue'
+import numberinput from './numberinput/numberinput.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -59,6 +60,7 @@ const components = [
     radio,
     checkboxgroup,
     checkbox,
+    numberinput,
 ]
 
 // 定义 install 方法

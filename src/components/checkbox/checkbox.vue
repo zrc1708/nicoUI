@@ -48,9 +48,6 @@ export default {
     created(){
         this.$parent.items.push(this)
     },
-    mounted(){
-        // console.log(this.$parent)
-    },
     methods:{
         chooseAllRadio(){
             if(this.$parent.isChoosedAll){

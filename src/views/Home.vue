@@ -393,6 +393,10 @@
         <ni-checkbox label="深圳"></ni-checkbox>
         <ni-checkbox chooseAll>选择全部</ni-checkbox>
     </ni-checkbox-group>
+    <hr>
+
+    <ni-numberinput :min=1 :max=10 :step=2 v-model="numberinput" @change="numberinputchange"></ni-numberinput>
+    <ni-numberinput :min=1 :max=10 :step=2 disable v-model="numberinput2" @change="numberinputchange"></ni-numberinput>
   </div>
 </template>
 
@@ -429,6 +433,8 @@ export default {
             radio:'',
             disableflag:true,
             checkbox:['北京','上海'],
+            numberinput:3,
+            numberinput2:1,
         }
     },
     mounted(){
@@ -526,6 +532,9 @@ export default {
         },
         radiochange(val){
             console.log(val)
+        },
+        numberinputchange(val){
+          console.log(val)
         }
     }
 }
