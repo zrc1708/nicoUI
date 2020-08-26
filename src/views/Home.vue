@@ -1,10 +1,16 @@
 <template>
   <div class="home">
     home <br>
-    <button @click="button1">点击触发message</button>
+    <button @click="button1(1)">点击触发message success</button>
+    <button @click="button1(2)">点击触发message default</button>
+    <button @click="button1(3)">点击触发message warn</button>
+    <button @click="button1(4)">点击触发message error</button>
+    <hr>
+
     <button @click="button2">点击触发有输入messagebox</button>
     <button @click="button22">点击触发messagebox</button> <br>
-
+    <hr>
+    
     <ni-button type='default'>主要按钮</ni-button>
     <ni-button type='primary' @click="button3">主要按钮</ni-button>
     <ni-button type='success'>主要按钮</ni-button>
@@ -449,9 +455,14 @@ export default {
         test1(){
           console.log(123)
         },
-        button1(){
+        button1(num){
+          let str = ''
+          if(num==1) str = 'success'
+          else if(num==2) str = 'default'
+          else if(num==3) str = 'warn'
+          else str = 'error'
           this.$message({
-            type:'success',
+            type:str,
             text:'自定义的message组件',
             time:1200
           })

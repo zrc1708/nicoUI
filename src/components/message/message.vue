@@ -1,7 +1,8 @@
 <template>
 <transition name="message">
-     <div class="mymessage" :class="[type+'border']" v-show="state">
-        <i :class="['base',type]"></i><span>{{text}}</span>
+    <div class="mymessage" :class="[type+'border']" v-show="state">
+        <i :class="['base',type]"></i>
+        <span class="ni-message-content">{{text}}</span>
     </div>
 </transition>
 </template>
@@ -63,31 +64,94 @@
 .defaultborder{
     border: 1px solid #7e8087;
 }
-span{
+.ni-message-content{
     line-height: 40px;
     margin-right: 10px;
+    vertical-align: middle;
 }
 .base{
     display: inline-block;
     width: 20px;
     height: 20px;
-    background: url(./message-icon.webp) no-repeat;
-    background-size: cover;
-    vertical-align: middle;
-    transform: translateY(-2px);
     margin: 0 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+    position: relative;
 }
 .success{
-    background-position: 0 0;
+    background-color: #52c41a;
+    &::after{
+        position: absolute;
+        content: '';
+        width: 13px;
+        height: 7px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-70%) rotate(-45deg);
+        box-sizing: border-box;
+        border-bottom: 2px solid white;
+        border-left: 2px solid white;
+    }
 }
 .error{
-    background-position: -60px 0;
+    background-color: #f5222d;
+    &::before{
+        position: absolute;
+        content: '';
+        width: 13px;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        background-color: white;
+        transform: translate(-50%,-50%) rotate(45deg);
+    }
+    &::after{
+        position: absolute;
+        content: '';
+        width: 13px;
+        height: 2px;
+        top: 50%;
+        left: 50%;
+        background-color: white;
+        transform: translate(-50%,-50%) rotate(-45deg);
+    }
 }
 .warn{
-    background-position: -40px 0;
+    background-color: #de912f;
+    &::before{
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 9px;
+        top: 15%;
+        left: 50%;
+        background-color: white;
+        transform: translateX(-50%);
+    }
+    &::after{
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 2px;
+        bottom: 15%;
+        left: 50%;
+        background-color: white;
+        transform: translateX(-50%);
+    }
 }
 .default{
-    background-position: -20px 0;
+    background-color: #7e8087;
+    &::after{
+        position: absolute;
+        content: '';
+        width: 15px;
+        height: 4px;
+        top: 50%;
+        left: 50%;
+        background-image: radial-gradient(circle, white 1.5px, transparent 0);
+        background-size: 5px 100%;
+        transform: translate(-50%,-50%);
+    }
 }
 
 .message-enter-active, .message-leave-active {
