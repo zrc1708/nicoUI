@@ -25,6 +25,7 @@ import radio from './radio/radio.vue'
 import checkboxgroup from './checkbox/checkbox-group.vue'
 import checkbox from './checkbox/checkbox.vue'
 import numberinput from './numberinput/numberinput.vue'
+import drawer from './drawer/drawer.vue'
 
 import Message from './message/message.js'
 import MessageBox from './messagebox/messagebox.js'
@@ -61,6 +62,7 @@ const components = [
     checkboxgroup,
     checkbox,
     numberinput,
+    drawer
 ]
 
 // 定义 install 方法
