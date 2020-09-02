@@ -1,10 +1,14 @@
 {
   "name": "nico-ui",
   "version": "0.1.0",
-  "private": true,
+  "description":"将一些自己常用的组件进行封装",
+  "main":"lib/nico-ui.umd.min.js",
+  "private": false,
+  "license": "wisewrong",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lib": "vue-cli-service build --target lib --name nico-ui --dest lib packages/index.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
