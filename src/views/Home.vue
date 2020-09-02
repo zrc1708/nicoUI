@@ -405,10 +405,28 @@
     <ni-numberinput :min=1 :max=10 :step=2 disable v-model="numberinput2" @change="numberinputchange"></ni-numberinput>
     <hr>
 
-    <ni-button @click="showdrawer">展开抽屉</ni-button>
+    <ni-button @click="showdrawer">右展开抽屉</ni-button>
     <ni-drawer :visible="drawervisible"
                 @maskclick ='drawermackclick'>
-      这是抽屉组件
+      这是右抽屉组件
+    </ni-drawer>
+    <ni-button @click="showdrawer2">下展开抽屉</ni-button>
+    <ni-drawer :visible="drawervisible2"
+                position='bottom'
+                @maskclick ='drawer2mackclick'>
+      这是下抽屉组件
+    </ni-drawer>
+    <ni-button @click="showdrawer3">左展开抽屉</ni-button>
+    <ni-drawer :visible="drawervisible3"
+                position='left'
+                @maskclick ='drawer3mackclick'>
+      这是左抽屉组件
+    </ni-drawer>
+    <ni-button @click="showdrawer4">上展开抽屉</ni-button>
+    <ni-drawer :visible="drawervisible4"
+                position='top'
+                @maskclick ='drawer4mackclick'>
+      这是上抽屉组件
     </ni-drawer>
   </div>
 </template>
@@ -448,7 +466,10 @@ export default {
             checkbox:['北京','上海'],
             numberinput:3,
             numberinput2:1,
-            drawervisible:false
+            drawervisible:false,
+            drawervisible2:false,
+            drawervisible3:false,
+            drawervisible4:false,
         }
     },
     mounted(){
@@ -560,7 +581,25 @@ export default {
         },
         drawermackclick(){
           this.drawervisible = false
-        }
+        },
+        showdrawer2(){
+          this.drawervisible2 = true
+        },
+        drawer2mackclick(){
+          this.drawervisible2 = false
+        },
+        showdrawer3(){
+          this.drawervisible3 = true
+        },
+        drawer3mackclick(){
+          this.drawervisible3 = false
+        },
+        showdrawer4(){
+          this.drawervisible4 = true
+        },
+        drawer4mackclick(){
+          this.drawervisible4 = false
+        },
     }
 }
 </script>

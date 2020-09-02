@@ -1,5 +1,7 @@
 import Vue from 'vue'
 
+import './global.css'
+
 // 导入单个组件
 import button from './button/button.vue'
 import input from './input/input.vue'
