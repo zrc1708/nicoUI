@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 
 import niUI from '../packages/index'
+import './assets/global.css'
 
 Vue.config.productionTip = false
 
