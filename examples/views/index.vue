@@ -2,9 +2,11 @@
     <div class="index-box">
         <canvas id="canvas"></canvas>
         <div class="content">
-            <p>nico-ui</p>
-            <p>一套基于Vue.js的UI组件库</p>            
+            <img src="../assets/nico-ui-title.png" alt="">
+            <p class="introduce">一套基于Vue.js的UI组件库</p>            
+            <span class="start">开始</span>
         </div>
+        <div class="github" @click="gotoGithub">Fork me on GitHub</div>
     </div>
 </template>
 
@@ -12,6 +14,11 @@
 export default {
     data() {
         return {};
+    },
+    methods:{
+        gotoGithub(){
+            window.open('https://github.com/zrc1708/nicoUI')
+        }
     },
     mounted(){
         var canvas = document.getElementById("canvas");
@@ -174,6 +181,7 @@ function randomIntFromInterval(mn, mx) {
     }
     canvas {
         background-color: #eee;
+        background-image: radial-gradient(circle, #144889 10%, #13194b  );
         display: block;
         margin: 0 auto;
         width: 100%;
@@ -184,8 +192,76 @@ function randomIntFromInterval(mn, mx) {
     }
     .content{
         position: absolute;
-        top: 50%;
+        top: 40%;
         left: 50%;
         transform: translate(-50%,-50%);
+        text-align: center;
+    }
+    .introduce{
+        color: white;
+        text-align: center;
+        font-size: 16px;
+    }
+    .start{
+      margin: 0 auto;
+      width: 80px;
+      height: 40px;
+      line-height: 40px;
+      margin-top: 30px;
+      display: block;
+      color: white;
+      cursor: pointer;
+      position: relative;
+      transition: color .1s;
+
+      &::before{
+          transition: all .1s;
+          content: '';
+          position: absolute;
+          display: block;
+          background-color: white;
+          width: 100%;
+          height: 3px;
+          top: -7px;
+          left: 0;
+          opacity: 0;
+      }
+      &::after{
+          transition: all .1s;
+          content: '';
+          display: block;
+          position: absolute;
+          display: block;
+          background-color: white;
+          width: 100%;
+          height: 3px;
+          bottom: -7px;
+          left: 0;
+          opacity: 0;
+      }
+    }
+    .start:hover{
+        &::before{
+            top: 0;
+            opacity: 1;
+        }
+        &::after{
+            bottom: 0;
+            opacity: 1;
+        }
+    }
+    .github{
+        cursor: pointer;
+        color: white;
+        position: fixed;
+        top: 90px;
+        right: -150px;
+        text-align: center;
+        width: 500px;
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        background-color: #409eff;
+        transform: rotate(45deg);
     }
 </style>
