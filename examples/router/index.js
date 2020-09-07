@@ -3,6 +3,11 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
 import index from '../views/index.vue'
+import component from '../views/component.vue'
+
+import downlod from '../views/download.vue'
+import link from '../views/link.vue'
+import button from '../views/button.vue'
 
 import test1 from '../examples/test1.vue'
 import test2 from '../examples/test2.vue'
@@ -14,17 +19,17 @@ Vue.use(VueRouter)
     {
       path: '/',
       component: index,
-      children:[{
-          path: '/test1',
-          component: test1
-      },{
-          path: '/test2',
-          component: test2,
-          children:[{
-            path:'/test3',
-            component:test3
-          }]
-      }]
+    },{
+      path: '/component',
+      component: component,
+      children:[
+          {path:'/download',component:downlod},
+          {path:'/link',component:link},
+          {path:'/button',component:button}
+      ]
+    },{
+      path:'/home',
+      component:Home
     }
 ]
 

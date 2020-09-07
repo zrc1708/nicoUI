@@ -4,7 +4,7 @@
         <div class="content">
             <img src="../assets/nico-ui-title.png" alt="">
             <p class="introduce">一套基于Vue.js的UI组件库</p>            
-            <span class="start">开始</span>
+            <span class="start" @click="start">开始</span>
         </div>
         <div class="github" @click="gotoGithub">Fork me on GitHub</div>
     </div>
@@ -18,6 +18,9 @@ export default {
     methods:{
         gotoGithub(){
             window.open('https://github.com/zrc1708/nicoUI')
+        },
+        start(){
+            this.$router.push('component')
         }
     },
     mounted(){
@@ -254,8 +257,8 @@ function randomIntFromInterval(mn, mx) {
         cursor: pointer;
         color: white;
         position: fixed;
-        top: 90px;
-        right: -150px;
+        top: 70px;
+        right: -170px;
         text-align: center;
         width: 500px;
         height: 30px;

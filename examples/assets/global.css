@@ -2,3 +2,15 @@ html,body{
     margin: 0;
     padding: 0;
 }
+.page-container h2, .page-container h3, .page-container h4, .page-container h5 {
+    font-weight: 400;
+    color: #1f2f3d;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+pre{
+    margin: 0;
+}
+code{
+    padding-left: 20px!important;
+}

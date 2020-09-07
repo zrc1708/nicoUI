@@ -10,6 +10,15 @@ Vue.config.productionTip = false
 
 Vue.use(niUI)
 
+import './assets/atom-one-dark.css'
+
+Vue.directive('highlight',function (el) {
+  let blocks = el.querySelectorAll('pre code');
+  blocks.forEach((block)=>{
+    hljs.highlightBlock(block)
+  })
+})
+
 new Vue({
   router,
   store,
