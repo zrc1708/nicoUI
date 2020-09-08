@@ -1,8 +1,8 @@
 {
   "name": "nico-ui",
-  "version": "0.1.0",
-  "description":"将一些自己常用的组件进行封装",
-  "main":"lib/nico-ui.umd.min.js",
+  "version": "0.1.1",
+  "description": "将一些自己常用的组件进行封装",
+  "main": "lib/nico-ui.umd.min.js",
   "private": false,
   "license": "wisewrong",
   "scripts": {
