@@ -20,13 +20,25 @@ export default {
     data() {
         return {
             listArr:[
-                {name:'link 文字链接',path:'/link'},
-                {name:'button 按钮',path:'/button'},
+                {name:'Link 文字链接',path:'/component/link'},
+                {name:'Button 按钮',path:'/component/button'},
+                {name:'Radio 单选框',path:'/component/radio'},
+                {name:'Checkbox 多选框',path:'/component/checkbox'},
+                {name:'Input 输入框',path:'/component/input'},
+                {name:'Numberinput 计数器',path:'/component/numberinput'},
+                {name:'Select 选择器',path:'/component/select'},
+                {name:'Switch 开关',path:'/component/switch'},
+                {name:'Badag 标记',path:'/component/badage'},
+                {name:'Tag 标签',path:'/component/tag'},
+                {name:'Upload 上传',path:'/component/upload'},
             ]
         };
     },
     methods:{
         goto(path){
+            if(this.$router.history.current.path===path){
+                return 0
+            }
             this.$router.push(path)
         }
     },
@@ -53,6 +65,11 @@ export default {
     transition: .15s ease-out;
     height: 40px;
     line-height: 40px;
+    -moz-user-select:none; /*火狐*/
+    -webkit-user-select:none; /*webkit浏览器*/
+    -ms-user-select:none; /*IE10*/
+    -khtml-user-select:none; /*早期浏览器*/
+    user-select:none;
 
     &:hover{
         color: #409eff;

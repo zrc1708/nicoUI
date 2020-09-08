@@ -8,6 +8,15 @@ import component from '../views/component.vue'
 import downlod from '../views/download.vue'
 import link from '../views/link.vue'
 import button from '../views/button.vue'
+import radio from '../views/radio.vue'
+import checkbox from '../views/checkbox.vue'
+import input from '../views/input.vue'
+import numberinput from '../views/numberinput.vue'
+import select from '../views/select.vue'
+import myswitch from '../views/switch.vue'
+import badage from '../views/badage.vue'
+import tag from '../views/tag.vue'
+import upload from '../views/upload.vue'
 
 import test1 from '../examples/test1.vue'
 import test2 from '../examples/test2.vue'
@@ -22,10 +31,20 @@ Vue.use(VueRouter)
     },{
       path: '/component',
       component: component,
+      redirect:'/component/download',
       children:[
-          {path:'/download',component:downlod},
-          {path:'/link',component:link},
-          {path:'/button',component:button}
+          {path:'download',component:downlod},
+          {path:'link',component:link},
+          {path:'button',component:button},
+          {path:'radio',component:radio},
+          {path:'checkbox',component:checkbox},
+          {path:'input',component:input},
+          {path:'numberinput',component:numberinput},
+          {path:'select',component:select},
+          {path:'switch',component:myswitch},
+          {path:'badage',component:badage},
+          {path:'tag',component:tag},
+          {path:'upload',component:upload},
       ]
     },{
       path:'/home',

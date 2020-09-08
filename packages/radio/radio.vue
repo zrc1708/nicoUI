@@ -7,6 +7,7 @@
                ref="radio" 
                class="ni-radio-input" 
                @change="handleChange"
+               :disabled='disabled'
                :value="label"
                v-model="model">
         <span class="ni-radio-label"

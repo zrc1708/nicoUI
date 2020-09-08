@@ -60,7 +60,6 @@ export default {
         text-align: center;
         box-sizing: border-box;
         outline: none;
-        margin: 0;
         transition: .1s;
         font-weight: 500;
         padding: 12px 20px;

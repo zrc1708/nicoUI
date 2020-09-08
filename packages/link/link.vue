@@ -10,7 +10,6 @@
 export default {
     name:'ni-link',
     props:{
-        // 显示的文字
         type:{
             type: String,
             default: 'default',
