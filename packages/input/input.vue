@@ -1,5 +1,5 @@
 <template>
-    <div class="ni-input-box">
+    <div class="ni-input-box" :class="{'inputerror':error}">
         <div class="before" v-if="$slots.before">
             <slot name="before"></slot>
         </div>
@@ -10,7 +10,6 @@
                 type="text" 
                 :placeholder="placeholder" 
                 class="ni-input" 
-                :class="{'inputerror':error}"
                 @input="input($event)"
                 @change="$emit('change',$event.target.value)"
             >
@@ -27,7 +26,7 @@ export default {
     props:{
         placeholder: {
             type: String,
-            default: '请输入内容',
+            default: '请输入',
         },
         clearable: {
             type: Boolean,

@@ -61,12 +61,12 @@ export default {
 </div>`,
             code2:
 `<div>
-    <ni-button class="button" disabled>默认按钮</ni-button>
-    <ni-button class="button" type='primary' disabled>主要按钮</ni-button>
-    <ni-button class="button" type='success' disabled>成功按钮</ni-button>
-    <ni-button class="button" type='info' disabled>信息按钮</ni-button>
-    <ni-button class="button" type='warn' disabled>警告按钮</ni-button>
-    <ni-button class="button" type='error' disabled>危险按钮</ni-button>
+    <ni-button disabled>默认按钮</ni-button>
+    <ni-button type='primary' disabled>主要按钮</ni-button>
+    <ni-button type='success' disabled>成功按钮</ni-button>
+    <ni-button type='info' disabled>信息按钮</ni-button>
+    <ni-button type='warn' disabled>警告按钮</ni-button>
+    <ni-button type='error' disabled>危险按钮</ni-button>
 </div>`,
             code3:
 `<div>

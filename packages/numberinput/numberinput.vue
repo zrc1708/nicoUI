@@ -74,7 +74,6 @@ export default {
             }else if(this.max&&this.number>this.max){
                 this.number = this.max
             }
-            this.$emit('input', this.number);
             this.$emit('change', this.number);
         }
     }
