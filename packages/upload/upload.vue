@@ -70,6 +70,10 @@ export default {
             type:Function,
             required:true
         },
+        // 文件删除回调
+        fileDelete:{
+            type:Function
+        },
         // 选择失败回调
         chooseFail:{
             type:Function,
@@ -137,6 +141,7 @@ export default {
             if(this.type=='image'){
                 this.imagesArr.splice(index,1)
             }
+            this.fileDelete(this.filesArr)
         },
         // 清空文件
         clear(){

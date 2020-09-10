@@ -1,6 +1,6 @@
 <template>
     <span class="ni-badage">
-        <span class="ni-badage-num" :style="{'background-color':color}">{{num}}</span>
+        <span class="ni-badage-num" :style="{'background-color':color}">{{val}}</span>
         <slot></slot>
     </span>
 </template>
@@ -9,7 +9,7 @@ export default {
     name:'ni-badage',
     props:{
         // 显示的数字
-        num: {
+        val: {
             type: [String,Number]
         },
         // 显示的颜色

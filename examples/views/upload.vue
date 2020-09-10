@@ -1,11 +1,207 @@
 <template>
-    <div>
-        upload
+    <div class="page-container" v-highlight>
+        <h2>Upload 上传组件</h2>
+        <h3>基础用法</h3>
+        <p>如果希望用户选择完就上传，可以在选择成功回调中进行操作</p>
+        <component-box :code='code1'>
+            <ni-upload 
+                :chooseSuccess="chooseSuccess" 
+                :chooseFail="chooseFail"
+                :fileDelete="fileDelete"
+                ref="uploadbox"></ni-upload>
+        </component-box>
+        <h3>图片上传</h3>
+        <p>如果上传图片文件，可以使用image类型来显示缩略图</p>
+        <component-box :code='code2'>
+            <ni-upload 
+                style="width:100%"
+                type="image"
+                buttontext='选择图片文件'
+                kindlimit='image/*'
+                :chooseSuccess="chooseSuccess" 
+                :chooseFail="chooseFail"
+                :fileDelete="fileDelete"
+                ref="uploadbox2"></ni-upload>
+        </component-box>
+        <h3>拖拽上传</h3>
+        <p>如果用户拖拽了非法文件，或在失败回调中显示失败类型</p>
+        <component-box :code='code3'>
+            <ni-upload 
+                drag
+                style="width:100%"
+                type="image"
+                kindlimit='image/*'
+                :chooseSuccess="chooseSuccess" 
+                :chooseFail="chooseFail"
+                :fileDelete="fileDelete"
+                ref="uploadbox3"></ni-upload>
+        </component-box>
+        <h3>手动上传</h3>
+        <p>如果希望用户自行决定上传，就使用handupload吧，在handupload中进行操作</p>
+        <component-box :code='code4'>
+            <ni-upload 
+                style="width:100%"
+                type="image"
+                buttontext='选择图片文件'
+                kindlimit='image/*'
+                handbuttontext='点击上传'
+                :handupload="handupload"
+                :chooseSuccess="chooseSuccess" 
+                :chooseFail="chooseFail"
+                :fileDelete="fileDelete"
+                ref="uploadbox4"></ni-upload>
+        </component-box>
+        <h3>清除全部选择</h3>
+        <p>上传组件有clear方法，可以在你想要的地方调用它来一键清除所选</p>
+            <ni-upload 
+                style="width:100%"
+                type="image"
+                buttontext='选择图片文件'
+                kindlimit='image/*'
+                handbuttontext='点击上传'
+                :handupload="handupload"
+                :chooseSuccess="chooseSuccess" 
+                :chooseFail="chooseFail"
+                :fileDelete="fileDelete"
+                ref="uploadbox4"></ni-upload>
     </div>
 </template>
 <script>
+import componentbox from '../components/componentbox/conponemtbox'
+import table from '../components/table/table'
+
 export default {
-    
+    components:{
+        'component-box':componentbox,
+        'my-table':table
+    },
+    methods:{
+        chooseSuccess(fileArr){
+            console.log(fileArr)
+        },
+        fileDelete(fileArr){
+            console.log(fileArr)
+        },
+        chooseFail(obj){
+            console.log(obj)
+        },
+        handupload(fileArr){
+            console.log(fileArr)
+        }
+    },
+    data(){
+        return{
+            code1:
+`<template>
+    <ni-upload 
+        :chooseSuccess="chooseSuccess" 
+        :chooseFail="chooseFail"
+        :fileDelete="fileDelete"
+        ref="uploadbox"></ni-upload>
+<\/template>
+<script>
+export default {
+    methods:{
+        chooseSuccess(fileArr){
+            console.log(fileArr)
+        },
+        fileDelete(fileArr){
+            console.log(fileArr)
+        },
+        chooseFail(obj){
+            console.log(obj)
+        }
+    },
+}
+<\/script>`,
+            code2:
+`<template>
+    <ni-upload 
+        style="width:100%"
+        type="image"
+        buttontext='选择图片文件'
+        kindlimit='image/*'
+        :chooseSuccess="chooseSuccess" 
+        :chooseFail="chooseFail"
+        :fileDelete="fileDelete"
+        ref="uploadbox"></ni-upload>
+<\/template>
+<script>
+export default {
+    methods:{
+        chooseSuccess(fileArr){
+            console.log(fileArr)
+        },
+        fileDelete(fileArr){
+            console.log(fileArr)
+        },
+        chooseFail(obj){
+            console.log(obj)
+        }
+    },
+}
+<\/script>`,
+            code3:
+`<template>
+    <ni-upload 
+        drag
+        style="width:100%"
+        type="image"
+        kindlimit='image/*'
+        :chooseSuccess="chooseSuccess" 
+        :chooseFail="chooseFail"
+        :fileDelete="fileDelete"
+        ref="uploadbox"></ni-upload>
+<\/template>
+<script>
+export default {
+    methods:{
+        chooseSuccess(fileArr){
+            console.log(fileArr)
+        },
+        fileDelete(fileArr){
+            console.log(fileArr)
+        },
+        chooseFail(obj){
+            console.log(obj)
+        }
+    },
+}
+<\/script>`,
+        code4:
+`<template>
+    <ni-upload 
+        style="width:100%"
+        type="image"
+        buttontext='选择图片文件'
+        kindlimit='image/*'
+        handbuttontext='点击上传'
+        :handupload="handupload"
+        :chooseSuccess="chooseSuccess" 
+        :chooseFail="chooseFail"
+        :fileDelete="fileDelete"
+        ref="uploadbox"></ni-upload>
+<\/template>
+<script>
+export default {
+    methods:{
+        chooseSuccess(fileArr){
+            console.log(fileArr)
+        },
+        fileDelete(fileArr){
+            console.log(fileArr)
+        },
+        chooseFail(obj){
+            console.log(obj)
+        },
+        handupload(fileArr){
+            console.log(fileArr)
+        }
+    },
+}
+<\/script>`
+        }
+    }
 }
 </script>
 <style lang="less" scoped>
