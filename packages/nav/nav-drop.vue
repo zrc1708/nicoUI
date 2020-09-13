@@ -45,7 +45,7 @@ export default {
             height:0,
             firstClose:true, // 首次点击效果为收起（配合showchildren）
             sty:'',
-            showulicon:false,   //控制箭头朝向
+            showulicon:true,   //控制箭头朝向
             itemFontColor:'',
             showHeadChildren:false, //控制head模式下下拉列表的显示
             indexhead:'ni-ui-default',   //head模式控制样式
@@ -143,7 +143,6 @@ export default {
     height: 56px;
     line-height: 56px;
     font-size: 16px;
-    color: #303133;
     padding: 0 20px 0 0;
     cursor: pointer;
     transition: background-color .3s;

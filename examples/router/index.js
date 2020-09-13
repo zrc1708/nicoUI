@@ -17,6 +17,10 @@ import myswitch from '../views/switch.vue'
 import badage from '../views/badage.vue'
 import tag from '../views/tag.vue'
 import upload from '../views/upload.vue'
+import breadcrumb from '../views/breadcrumbs.vue'
+import prompt from '../views/prompt.vue'
+import swiper from '../views/swiper.vue'
+import nav from '../views/nav.vue'
 
 import test1 from '../examples/test1.vue'
 import test2 from '../examples/test2.vue'
@@ -45,6 +49,10 @@ Vue.use(VueRouter)
           {path:'badage',component:badage},
           {path:'tag',component:tag},
           {path:'upload',component:upload},
+          {path:'breadcrumb',component:breadcrumb},
+          {path:'prompt',component:prompt},
+          {path:'swiper',component:swiper},
+          {path:'nav',component:nav},
       ]
     },{
       path:'/home',

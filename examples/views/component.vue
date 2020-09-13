@@ -31,6 +31,10 @@ export default {
                 {name:'Badag 标记',path:'/component/badage'},
                 {name:'Tag 标签',path:'/component/tag'},
                 {name:'Upload 上传',path:'/component/upload'},
+                {name:'Breadcrumb 面包屑',path:'/component/breadcrumb'},
+                {name:'Prompt 提示',path:'/component/prompt'},
+                {name:'Swiper 轮播',path:'/component/swiper'},
+                {name:'Nav 导航',path:'/component/nav'},
             ]
         };
     },

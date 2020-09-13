@@ -45,7 +45,7 @@
                 buttontext='选择图片文件'
                 kindlimit='image/*'
                 handbuttontext='点击上传'
-                :handupload="handupload"
+                @handupload="handupload"
                 :chooseSuccess="chooseSuccess" 
                 :chooseFail="chooseFail"
                 :fileDelete="fileDelete"
@@ -53,17 +53,25 @@
         </component-box>
         <h3>清除全部选择</h3>
         <p>上传组件有clear方法，可以在你想要的地方调用它来一键清除所选</p>
+        <p>比如本案例在用户手动上传后清除了所选</p>
+        <component-box :code='code5'>
             <ni-upload 
                 style="width:100%"
                 type="image"
                 buttontext='选择图片文件'
                 kindlimit='image/*'
                 handbuttontext='点击上传'
-                :handupload="handupload"
+                @handupload="handupload2"
                 :chooseSuccess="chooseSuccess" 
                 :chooseFail="chooseFail"
                 :fileDelete="fileDelete"
-                ref="uploadbox4"></ni-upload>
+                ref="uploadbox5"></ni-upload>
+        </component-box>
+
+        <h3>Attributes</h3>
+        <my-table :th='th' :content='content'></my-table>
+        <h3>Events</h3>
+        <my-table :th='th2' :content='content2'></my-table>
     </div>
 </template>
 <script>
@@ -87,6 +95,10 @@ export default {
         },
         handupload(fileArr){
             console.log(fileArr)
+        },
+        handupload2(fileArr){
+            console.log(fileArr)
+            this.$refs.uploadbox5.clear()
         }
     },
     data(){
@@ -176,7 +188,7 @@ export default {
         buttontext='选择图片文件'
         kindlimit='image/*'
         handbuttontext='点击上传'
-        :handupload="handupload"
+        @handupload="handupload"
         :chooseSuccess="chooseSuccess" 
         :chooseFail="chooseFail"
         :fileDelete="fileDelete"
@@ -199,7 +211,107 @@ export default {
         }
     },
 }
-<\/script>`
+<\/script>`,
+        code5:
+`<template>
+    <ni-upload 
+        style="width:100%"
+        type="image"
+        buttontext='选择图片文件'
+        kindlimit='image/*'
+        handbuttontext='点击上传'
+        @handupload="handupload"
+        :chooseSuccess="chooseSuccess" 
+        :chooseFail="chooseFail"
+        :fileDelete="fileDelete"
+        ref="uploadbox"></ni-upload>
+<\/template>
+<script>
+export default {
+    methods:{
+        chooseSuccess(fileArr){
+            console.log(fileArr)
+        },
+        fileDelete(fileArr){
+            console.log(fileArr)
+        },
+        chooseFail(obj){
+            console.log(obj)
+        },
+        handupload(fileArr){
+            console.log(fileArr)
+            this.$refs.uploadbox.clear()
+        }
+    },
+}
+<\/script>`,
+            th:[{name:'属性',key:'name'},
+                {name:'说明',key:'description'},
+                {name:'类型',key:'type'},
+                {name:'默认值',key:'default'}],
+            content:[{
+                name:'type',
+                description:'上传组件的种类，可选值有default,image',
+                type:'string',
+                default:'default'
+            },{
+                name:'buttontext',
+                description:'选择按钮的文字',
+                type:'number,string',
+                default:'选择文件'
+            },{
+                name:'drag',
+                description:'是否拖拽上传',
+                type:'boolean',
+                default:'false'
+            },{
+                name:'kinglimit',
+                description:'文件种类限制',
+                type:'string',
+                default:'*'
+            },{
+                name:'numlimit',
+                description:'文件数量限制',
+                type:'number',
+                default:'-'
+            },{
+                name:'sizelimit',
+                description:'文件大小限制，单位为比特',
+                type:'number',
+                default:'-'
+            },{
+                name:'handbuttontext',
+                description:'手动上传按钮的文字',
+                type:'number,string',
+                default:'-'
+            },{
+                name:'chooseSuccess',
+                description:'文件选择成功时的钩子',
+                type:'function(filesArr)',
+                default:'-'
+            },{
+                name:'chooseFail',
+                description:'文件选择失败的钩子',
+                type:'function(filesArr)',
+                default:'-'
+            },{
+                name:'fileDelete',
+                description:'文件删除的钩子',
+                type:'function(filesArr)',
+                default:'-'
+            }],
+            th2:[{name:'事件名',key:'name'},
+                {name:'说明',key:'description'},
+                {name:'回调参数',key:'parameters'}],
+            content2:[{
+                name:'handupload',
+                description:'手动上传按钮点击事件',
+                parameters:'选择的文件列表'
+            },{
+                name:'clear',
+                description:'清除所选文件',
+                parameters:'-'
+            }]
         }
     }
 }

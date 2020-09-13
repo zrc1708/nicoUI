@@ -122,16 +122,16 @@ export default {
     }
     .righttop{
         top: 0;
-        left: calc(100% + 7px);
+        left: calc(100% + 6px);
     }
     .right{
         top: 50%;
-        left: calc(100% + 7px);
+        left: calc(100% + 6px);
         transform: translateY(-50%);
     }
     .rightbottom{
         bottom: 0;
-        left: calc(100% + 7px);
+        left: calc(100% + 6px);
     }
     .bottomleft{
         bottom: 0;
@@ -151,17 +151,17 @@ export default {
     .lefttop{
         top: 0;
         left: 0;
-        transform: translate(calc(-100% - 7px),0);
+        transform: translate(calc(-100% - 6px),0);
     }
     .left{
         top: 50%;
         left: 0;
-        transform: translate(calc(-100% - 7px),-50%);
+        transform: translate(calc(-100% - 6px),-50%);
     }
     .leftbottom{
-        top: 0;
+        bottom: 0;
         left: 0;
-        transform: translate(calc(-100% - 7px),0);
+        transform: translate(calc(-100% - 6px),0);
     }
 
     .black{
@@ -183,8 +183,8 @@ export default {
     .left-dec{
         border-color: transparent transparent transparent black;
         left: 0;
-        top: 0;
-        transform: translate(-7px,50%);
+        top: 50%;
+        transform: translate(-7px,-50%);
     }
     .top-dec{
         border-color: black transparent transparent transparent;

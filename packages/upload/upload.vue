@@ -6,7 +6,7 @@
             <ni-link type="primary" class="choose" underline @click="upload">选择</ni-link>
         </div>
         <ni-button @click="upload" v-if="!drag" class="choosebutton">{{buttontext}}</ni-button>
-        <ni-button v-if="handupload" :disabled="filesArr.length==0" type="primary" @click="handupload(filesArr)">{{handbuttontext}}</ni-button>
+        <ni-button v-if="handupload" :disabled="filesArr.length==0" type="primary" @click="handupload">{{handbuttontext}}</ni-button>
         <div class="tip">
             <slot name="tip"></slot>
         </div>
@@ -83,12 +83,7 @@ export default {
         handbuttontext:{
             type:[Number,String],
             default:'上传'
-        },
-        // 手动上传方法
-        handupload:{
-            type:Function,
         }
-        
     },
     data(){
         return{
@@ -205,6 +200,10 @@ export default {
             }
             this.success()
         },
+        // 手动上传
+        handupload(){
+            this.$emit('handupload',this.filesArr)
+        }
     }
 }
 </script>
