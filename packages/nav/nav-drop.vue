@@ -59,11 +59,10 @@ export default {
             // 获取初始高度，此时获取到的是子组件均展开的高度（即使子组件可能默认不展开）
             this.height= this.$refs.dropnavChildrenBox.offsetHeight
             // 遍历子组件，如有默认不展开的下拉框，就减去其收起的高度
-            for (let index = 0; index < this.$children.length; index++) {
-                if(this.$children[index].showchildren==false){
-                    this.height-=this.$children[index].height
-                }
-            }
+            
+            this.setHeight(this.$children)
+
+            console.log(this.height)
             // 根据是否默认展开进行调整
             if(!this.showchildren){
                 this.sty = '0px'
@@ -73,6 +72,17 @@ export default {
         }
     },
     methods:{
+        // 遍历子组件树
+        setHeight(datas){ 
+            for(let i = 0; i < datas.length; i++){
+                if(datas[i].showchildren!==undefined){
+                    if(datas[i].showchildren==false){
+                        this.height-=datas[i].height
+                    }
+                    this.setHeight(datas[i].$children)
+                }
+            }
+        },
         showul(){
             if(this.nav.type=='side'){
                 let element = this.$refs.dropnavChildrenBox
