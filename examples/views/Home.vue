@@ -312,7 +312,6 @@
         </ni-nav>
     </div>
     <hr>
-
     <ni-tabs>
         <ni-tab-item label="用户管理">用户管理</ni-tab-item>
         <ni-tab-item label="配置管理">配置管理</ni-tab-item>

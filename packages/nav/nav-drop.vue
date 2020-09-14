@@ -53,16 +53,17 @@ export default {
     },
     created(){
         this.itemFontColor = this.nav.fontColor
+        if(this.nav.type=='head'){
+            this.showulicon = false
+        }
     },
     mounted(){
         if(this.nav.type=='side'){
             // 获取初始高度，此时获取到的是子组件均展开的高度（即使子组件可能默认不展开）
             this.height= this.$refs.dropnavChildrenBox.offsetHeight
-            // 遍历子组件，如有默认不展开的下拉框，就减去其收起的高度
-            
+            // 遍历子组件树，如有默认不展开的下拉框，就减去其收起的高度
             this.setHeight(this.$children)
 
-            console.log(this.height)
             // 根据是否默认展开进行调整
             if(!this.showchildren){
                 this.sty = '0px'
@@ -129,7 +130,7 @@ export default {
             this.timer = setTimeout(() => {
                 if(this.nav.type=='head'){
                     this.showHeadChildren = true
-                    this.showulicon = true
+                    this.showulicon = !this.showulicon
                 }
             }, 200);
         },
@@ -137,7 +138,7 @@ export default {
             window.clearTimeout(this.timer)
             if(this.nav.type=='head'){
                 this.showHeadChildren = false
-                this.showulicon = false
+                this.showulicon = !this.showulicon
             }
         }
     }

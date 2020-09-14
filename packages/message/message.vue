@@ -2,7 +2,7 @@
 <transition name="message">
     <div class="mymessage" :class="[type+'border']" v-show="state">
         <i :class="['base',type]"></i>
-        <span class="ni-message-content">{{text}}</span>
+        <span class="ni-message-content" :style="{'color':textColor}">{{text}}</span>
     </div>
 </transition>
 </template>
@@ -17,12 +17,16 @@
                 }
             },
             text: {
-                type: String,
-                default: 'ok'
+                type: [String,Number,Boolean],
+                default: '消息提示'
             },
             time: {
                 type: Number,
                 default: 1600
+            },
+            textColor:{
+                type:String,
+                default:'black'
             }
         },
         data(){

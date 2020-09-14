@@ -34,7 +34,7 @@ export default {
         },
         // 标题
         title:{
-            type:[String,Number],
+            type:[String,Number,Boolean],
             default:'标题'
         },
         // 是否显示遮罩
@@ -92,7 +92,7 @@ export default {
             cursor: pointer;
 
             &:hover::before,&:hover::after{
-                background-color: blue;
+                background-color: #409eff;
             }
             &::before{
                 content: '';

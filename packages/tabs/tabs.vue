@@ -122,7 +122,7 @@ export default {
         content:"";
         display: block;
         position: absolute;
-        top: 50%;
+        top: calc(50% - .5px);
         left: 0;
         height: 1px;
         width: 9px;
@@ -134,7 +134,7 @@ export default {
         content:"";
         display: block;
         position: absolute;
-        top: 50%;
+        top: calc(50% - .5px);
         right: 0;
         height: 1px;
         width: 9px;

@@ -21,6 +21,11 @@ import breadcrumb from '../views/breadcrumbs.vue'
 import prompt from '../views/prompt.vue'
 import swiper from '../views/swiper.vue'
 import nav from '../views/nav.vue'
+import tabs from '../views/tabs.vue'
+import drawer from '../views/drawer.vue'
+import message from '../views/message.vue'
+import messagebox from '../views/messagebox.vue'
+import dialog from '../views/dialog.vue'
 
 import test1 from '../examples/test1.vue'
 import test2 from '../examples/test2.vue'
@@ -53,6 +58,11 @@ Vue.use(VueRouter)
           {path:'prompt',component:prompt},
           {path:'swiper',component:swiper},
           {path:'nav',component:nav},
+          {path:'tabs',component:tabs},
+          {path:'drawer',component:drawer},
+          {path:'message',component:message},
+          {path:'messagebox',component:messagebox},
+          {path:'dialog',component:dialog},
       ]
     },{
       path:'/home',

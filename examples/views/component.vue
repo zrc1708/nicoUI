@@ -35,6 +35,11 @@ export default {
                 {name:'Prompt 提示',path:'/component/prompt'},
                 {name:'Swiper 轮播',path:'/component/swiper'},
                 {name:'Nav 导航',path:'/component/nav'},
+                {name:'Tabs 标签页',path:'/component/tabs'},
+                {name:'Drawer 抽屉',path:'/component/drawer'},
+                {name:'Message 消息',path:'/component/message'},
+                {name:'Messagebox 消息弹框',path:'/component/messagebox'},
+                {name:'Dialog 对话框',path:'/component/dialog'},
             ]
         };
     },

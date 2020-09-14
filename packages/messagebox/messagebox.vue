@@ -64,7 +64,7 @@
         },
         // 输入框的默认值
         inputValue:{
-          type: String||Number,
+          type: [String,Number,Boolean],
           default: ''
         },
         // 输入校验规则（正则）
@@ -75,7 +75,7 @@
         // 输入错误时的消息提示
         inputErrorMessage:{
           type:String,
-          default:''
+          default:'输入有误'
         },
         // 是否显示取消按钮
         isShowCancelBtn: {
@@ -199,7 +199,7 @@
       cursor: pointer;
 
       &:hover::before,&:hover::after{
-        background-color: blue;
+        background-color: #409eff;
       }
 
       &::before{
