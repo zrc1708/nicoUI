@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from '../views/Home.vue'
 import index from '../views/index.vue'
 import component from '../views/component.vue'
 
@@ -26,10 +25,6 @@ import drawer from '../views/drawer.vue'
 import message from '../views/message.vue'
 import messagebox from '../views/messagebox.vue'
 import dialog from '../views/dialog.vue'
-
-import test1 from '../examples/test1.vue'
-import test2 from '../examples/test2.vue'
-import test3 from '../examples/test3.vue'
 
 Vue.use(VueRouter)
 
@@ -64,9 +59,6 @@ Vue.use(VueRouter)
           {path:'messagebox',component:messagebox},
           {path:'dialog',component:dialog},
       ]
-    },{
-      path:'/home',
-      component:Home
     }
 ]
 

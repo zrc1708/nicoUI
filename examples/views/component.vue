@@ -2,10 +2,12 @@
     <div class="component">
         <div class="sidebar">
             <ul class="sideul">
-                <li class="sideli download" @click="goto('download')">安装</li>
+                <li class="sideli download" @click="goto('/component/download')"
+                    :class="{'choosed':$router.history.current.path=='/component/download'}">安装</li>
                 <li v-for="(item,index) in listArr"
                     :key="index"
-                    class="sideli"
+                    :class="{'choosed':$router.history.current.path==item.path}"
+                    class="sideli componentli"
                     @click="goto(item.path)">{{item.name}}</li>
             </ul>
         </div>
@@ -63,6 +65,7 @@ export default {
 }
 .sidebar{
     width:240px;
+    padding-top: 12px;
 }
 .sideul{
     margin: 0;
@@ -84,9 +87,14 @@ export default {
         color: #409eff;
     }
 }
+.choosed{
+    color: #409eff;
+}
+.componentli{
+    font-size: 14px;
+}
 .download{
     font-size: 20px;
-    font-weight: 600;
 }
 .content{
     flex: 1;
